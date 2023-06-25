@@ -1,0 +1,55 @@
+<template lwc:render-mode="light">
+    <div if:true={_isShowEmptyMessage} class="slds-p-around_small empty-message">
+        {_emptyMessage}
+    </div>
+
+    <div
+        if:false={_isShowEmptyMessage}
+        class="slds-form-element"
+        data-shipping-method-edit>
+        <div class="slds-form-element__control">
+            <template for:each={transformedOptions} for:item="option">
+                <span class="slds-radio" key={option.key}>
+                    <input
+                        type="radio"
+                        name={name}
+                        id={option.id}
+                        checked={option.selected}
+                        value={option.id}
+                        required={_required}
+                        disabled={isDisabled}
+                        onchange={handleChange}
+                    />
+                    <label
+                        class="
+                            slds-radio__label
+                            flex-container
+                        "
+                        for={option.id}
+                    >
+                        <span><span class="slds-radio_faux"></span>&nbsp;</span>
+                        <span
+                            id={option.id}
+                            data-id={option.id}
+                            class="slds-form-element__label flex-grow"
+                        >{option.name}</span
+                        >
+                        <lightning-formatted-number
+                            class="
+                                slds-form-element__label
+                                slds-m-left_medium
+                                slds-align_right
+                            "
+                            id={option.id}
+                            value={option.shippingFee}
+                            currency-code={option.currencyIsoCode}
+                            display-currency-as="symbol"
+                            format-style="currency" 
+                        >
+                        </lightning-formatted-number>
+                    </label>
+                </span>
+            </template>
+        </div>
+    </div>
+</template>
