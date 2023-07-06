@@ -14,17 +14,18 @@ https://github.com/forcedotcom/commerce-on-lightning-components/tree/release
 ### List of Components
 The following components are the current components available in this repository.
 
-| Component  | Page | Status |
-| ------------- | ------------- | ------------- |
-| Cart Summary  | Cart, Checkout  | Ready |
-| Shipping Method  | Checkout  | Ready |
-| Shipping Instructions  | Checkout  | Ready |
+| Component  | Page | Status | Demo Video |
+| ------------- | ------------- | ------------- | ------------- |
+| Cart Summary  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
+| Shipping Method  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
+| Shipping Instructions  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 
 ## Component Docs
 
 <details>
 <summary>Cart Summary</summary>
 This component utilizes a combination of slots & expressions to be a light weight version of cart summary. 
+Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=427
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -44,6 +45,7 @@ This component utilizes a combination of slots & expressions to be a light weigh
 <summary>Shipping Method</summary>
 This component shows the delivery methods that are available to the user during checkout. 
 This component utilize the commerce cloud API to make updates to the checkout session (which can be found here -- https://developer.salesforce.com/docs/atlas.en-us.242.0.chatterapi.meta/chatterapi/connect_resources_commerce_webstore_checkouts.htm) In order to make this work you will need to ensure you have a remote site setup for your community url. 
+Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -55,13 +57,13 @@ This component utilize the commerce cloud API to make updates to the checkout se
 7. Publish Site
 8. Login as user and check components values for accuracy
 
-### Limitation
 </details>
 
 <details>
 <summary>Shipping Instructions</summary>
 This component shows the delivery methods that are available to the user during checkout. 
 This component utilize the commerce cloud API to make updates to the checkout session (which can be found here -- https://developer.salesforce.com/docs/atlas.en-us.242.0.chatterapi.meta/chatterapi/connect_resources_commerce_webstore_checkouts.htm) In order to make this work you will need to ensure you have a remote site setup for your community url. 
+Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -73,7 +75,6 @@ This component utilize the commerce cloud API to make updates to the checkout se
 6. Publish Site
 7. Login as user and check components values for accuracy
 
-### Limitation
 </details>
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!
