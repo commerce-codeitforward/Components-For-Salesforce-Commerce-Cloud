@@ -1,0 +1,20 @@
+<template>
+    <div>
+        <h3 if:false={hideHeading}
+            data-heading
+            class="slds-text-heading_small slds-p-bottom_medium">
+            {headerLabel}
+        </h3>
+        <lightning-input
+            lwc:ref="poInput"
+            data-purchase-order-input
+            name="po-number"
+            label={inputLabel}
+            placeholder={placeholderLabel}
+            required
+        ></lightning-input>
+        <label if:true={showError} class="slds-text-color_error slds-m-top_small">
+            Error: {error}
+        </label>
+    </div>
+</template>
