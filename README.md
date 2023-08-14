@@ -19,13 +19,13 @@ The following components are the current components available in this repository
 | Cart Summary  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
 | Shipping Method  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 | Shipping Instructions  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
+| Simple Purchase Order  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
 
 ## Component Docs
 
 <details>
 <summary>Cart Summary</summary>
 This component utilizes a combination of slots & expressions to be a light weight version of cart summary. 
-Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=427
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -36,7 +36,6 @@ Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=427
 5. Publish Site
 6. Login as user and check components values for accuracy
   
-### Limitation
 -   This version does not utilize apex to bring cart summary details to the screen, so it's relying on expressions to show the information
 -   This version is not as 'smart' as the native component, meaning it won't hide and show promotions automatically or give you striked out original prices. If you want that functionality you'll have to add that afterwards. 
 </details>
@@ -45,7 +44,6 @@ Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=427
 <summary>Shipping Method</summary>
 This component shows the delivery methods that are available to the user during checkout. 
 This component utilize the commerce cloud API to make updates to the checkout session (which can be found here -- https://developer.salesforce.com/docs/atlas.en-us.242.0.chatterapi.meta/chatterapi/connect_resources_commerce_webstore_checkouts.htm) In order to make this work you will need to ensure you have a remote site setup for your community url. 
-Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -63,7 +61,6 @@ Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 <summary>Shipping Instructions</summary>
 This component shows the delivery methods that are available to the user during checkout. 
 This component utilize the commerce cloud API to make updates to the checkout session (which can be found here -- https://developer.salesforce.com/docs/atlas.en-us.242.0.chatterapi.meta/chatterapi/connect_resources_commerce_webstore_checkouts.htm) In order to make this work you will need to ensure you have a remote site setup for your community url. 
-Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 
 ### Installation Steps
 1. Deploy Code to your instance
@@ -74,6 +71,21 @@ Demo Link -- https://youtu.be/iVCZ5ZUEy9U?t=666
 5. Add a new setting with the name "Checkout Services" and the url of your community (example: https://XXX--uat.sandbox.my.site.com)
 6. Publish Site
 7. Login as user and check components values for accuracy
+
+</details>
+
+<details>
+<summary>Simple Purchase Order</summary>
+This component is a replacement for the standard purchase order component that can be used on the LWR checkout page.
+It utilizes the declarative api as par of LWR checkout - https://developer.salesforce.com/docs/atlas.en-us.b2b_b2c_comm_dev.meta/b2b_b2c_comm_dev/b2b_b2c_comm_display_lwc_apis.htm 
+
+### Installation Steps
+1. Deploy Code to your instance
+2. Navigate to the Checkout Page in Experience Builder
+3. Drag 'Simple Purchase Order' under the custom component section to the payment section of the checkout page
+4. Navigate to Remote Site Settings (Setup > Search "Remote Site Settings")
+5. Publish Site
+6. Login as user and complete a checkout to validate functionality
 
 </details>
 
