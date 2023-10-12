@@ -1,0 +1,70 @@
+<template lwc:render-mode="light">
+    <div class="slds-p-around_medium">
+        <header class="slds-p-vertical_x-small">
+            <slot name="headerText"></slot>
+        </header>
+        <!-- Subtotal Price Info -->
+        <div
+            class="item subtotal-price slds-p-vertical_x-small"
+            aria-live="assertive"
+            aria-atomic="true"
+            data-subtotal
+        >
+            <slot name="subtotalLabel"></slot>
+            <lightning-formatted-number
+                value={cartSubTotal}
+                format-style="currency" 
+                currency-code={currencyCode}
+                display-currency-as="symbol"
+            ></lightning-formatted-number>
+        </div>
+
+        <!-- Discount Amount Info ( Promotions ) -->
+        <div
+            class="item discount-amount slds-p-vertical_x-small"
+            aria-live="polite"
+            aria-atomic="true"
+            data-discount
+        >
+            <slot name="promotionsLabel"></slot>
+            <lightning-formatted-number
+                value={cartPromotion}
+                format-style="currency" 
+                currency-code={currencyCode}
+                display-currency-as="symbol"
+            ></lightning-formatted-number>
+        </div>
+
+        <!-- Tax Price Info -->
+        <div
+            class="item tax-price slds-p-vertical_x-small"
+            aria-live="assertive"
+            aria-atomic="true"
+            data-tax
+        >
+            <slot name="taxLabel"></slot>
+            <lightning-formatted-number
+                value={cartTax}
+                format-style="currency" 
+                currency-code={currencyCode}
+                display-currency-as="symbol"
+            ></lightning-formatted-number>
+        </div>
+
+        <!-- Total Price Info -->
+        <div class="item total-price slds-p-vertical_x-small" aria-live="assertive" aria-atomic="true">
+            <slot name="totalLabel"></slot>
+            <lightning-formatted-number
+                value={cartTotal}
+                format-style="currency" 
+                currency-code={currencyCode}
+                display-currency-as="symbol"
+            ></lightning-formatted-number>
+        </div>
+
+        <!-- Tax Included Display -->
+        <div class="tax-included-label">
+            <slot name="taxIncludedLabel"></slot>
+        </div>
+    </div>
+</template>
