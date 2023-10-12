@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Simple Purchase Order</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <!-- Purchase Order -->
+            <property label="Heading" name="headerLabel" type="String" default="Purchase Order" />
+            <property label="Hide Heading" name="hideHeading" type="Boolean" />
+            <property label="Purchase Order Number Field Label" name="inputLabel" type="String" default="Purchase Order Number" />
+            <property label="Purchase Order Number Field Ghost Text" name="placeholderLabel" type="String" default="" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
