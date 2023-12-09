@@ -1,17 +1,24 @@
-import { LightningElement, wire, api, track } from 'lwc';
+import { wire, api, track } from 'lwc';
 import { NavigationMixin } from "lightning/navigation";
-import { CheckoutInformationAdapter, placeOrder, simplePurchaseOrderPayment } from "commerce/checkoutApi";
+import { CheckoutInformationAdapter, simplePurchaseOrderPayment, CheckoutComponentBase } from "commerce/checkoutApi";
+import { refreshCartSummary } from "commerce/cartApi";
 
 import MAIN_TEMPLATE from "./simplePurchaseOrder.html";
 import STENCIL from "./simplePurchaseOrderStencil.html";
 
-export default class SimplePurchaseOrder extends NavigationMixin(
-    LightningElement
-  ) {
+const CheckoutStage = {
+    CHECK_VALIDITY_UPDATE: 'CHECK_VALIDITY_UPDATE',
+    REPORT_VALIDITY_SAVE: 'REPORT_VALIDITY_SAVE',
+    BEFORE_PAYMENT: 'BEFORE_PAYMENT',
+    PAYMENT: 'PAYMENT',
+    BEFORE_PLACE_ORDER: 'BEFORE_PLACE_ORDER',
+    PLACE_ORDER: 'PLACE_ORDER'
+};
+
+export default class SimplePurchaseOrder extends NavigationMixin(CheckoutComponentBase){
 
     isLoading = false;
     firstLoad = false;
-    _checkoutMode = 1;
 
     @track checkoutId;
     @track shippingAddress;
@@ -61,13 +68,19 @@ export default class SimplePurchaseOrder extends NavigationMixin(
     }
 
     /**
-     * The current checkout mode for this component
-     *
-     * @type {CheckoutMode}
+     * update form when our container asks us to
      */
-    @api
-    get checkoutMode() {
-        return this._checkoutMode;
+    stageAction(checkoutStage /*CheckoutStage*/) {
+        switch (checkoutStage) {
+            case CheckoutStage.CHECK_VALIDITY_UPDATE:
+                return Promise.resolve(this.checkValidity());
+            case CheckoutStage.REPORT_VALIDITY_SAVE:
+                return Promise.resolve(this.reportValidity());
+            case CheckoutStage.PAYMENT:
+                return Promise.resolve(this.paymentProcess());
+            default:
+                return Promise.resolve(true);
+        }
     }
 
     /**
@@ -97,37 +110,27 @@ export default class SimplePurchaseOrder extends NavigationMixin(
     * checkout save
     */
     @api
-    async checkoutSave() {
+    async paymentProcess() {
         console.log('simplePurchaseOrder: in checkout save');
 
         if (!this.reportValidity()) {
             throw new Error('Required data is missing');
         }
 
-        try {
-            console.log('simplePurchaseOrder checkoutSave in try');
-            await this.completePayment();
-            const result = await placeOrder();
+        console.log('simplePurchaseOrder checkoutSave in try');
+        await this.completePayment();
 
-            console.log('simplePurchaseOrder checkoutSave result: '+JSON.stringify(result));
+        const orderConfirmation = await this.dispatchPlaceOrderAsync();
 
-            if (result.orderReferenceNumber) {
-                this.navigateToOrder(result.orderReferenceNumber);
-            } else {
-                throw new Error("Required orderReferenceNumber is missing");
-            }
-        } catch (e) {
-            throw e;
+        if (orderConfirmation.orderReferenceNumber) {
+            refreshCartSummary();
+            this.navigateToOrder(orderConfirmation.orderReferenceNumber);
+            console.log('simplePurchaseOrder orderReferenceNumber: '+orderConfirmation.orderReferenceNumber);
+        } else {
+            throw new Error("Required orderReferenceNumber is missing");
         }
     }
 
-    /**
-     * place order
-     */
-    @api
-    async placeOrder() {
-        return this.checkoutSave();
-    }
 
     /**
      * complete payment
