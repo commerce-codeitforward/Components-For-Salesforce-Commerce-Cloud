@@ -1,0 +1,36 @@
+/**
+ * Created by dillon.loubser on 10/30/23.
+ */
+
+@IsTest
+private class AdVic_WishlistUtilTest {
+    @IsTest
+    static void testBehaviorWithoutData() {
+        AdVic_WishlistUtil.getWishListSummaries(null, null, true);
+        AdVic_WishlistUtil.getWishListItems(null, null, null, null);
+        AdVic_WishlistUtil.createWishList(null, null);
+        AdVic_WishlistUtil.deleteList(null, null);
+        AdVic_WishlistUtil.removeWishlistItem(null, null, null, null);
+    }
+
+    @IsTest
+    static void testBehaviorWithData(){
+        Account account =  new Account();
+        account.Name = 'Test';
+        insert account;
+        WebStore testWebStore = new WebStore(Name='TestWebStore', DefaultLanguage='cs');
+        insert testWebStore;
+        Wishlist wishlist = new Wishlist();
+        wishlist.AccountId = account.Id;
+        wishlist.Name = 'Test';
+        wishlist.WebStoreId = testWebStore.Id;
+        insert wishlist;
+        Product2 product2 = new Product2();
+        product2.Name = 'Test Product';
+        insert product2;
+        WishlistItem item = AdVic_WishlistUtil.addItemToWishlist(null, product2.Id, wishlist.Id, 1);
+        AdVic_WishlistUtil.getQuantity(item.Id);
+        AdVic_WishlistUtil.updateQuantity(item.Id, 2);
+        AdVic_WishlistUtil.putWishlistInCart(null, account.Id, wishlist.Id);
+    }
+}
