@@ -1,0 +1,30 @@
+<template>
+    <div class="slds-p-around_medium lgc-bg">
+        <lightning-formatted-text value={paymentMessage} ></lightning-formatted-text>
+    </div>
+    <div class="slds-p-around_medium lgc-bg">
+        <div class="slds-grid product-grid" >
+            <div class="slds-col slds-size_1-of-1">
+                <h3 if:false={hideHeading}
+                    data-heading
+                    class="slds-text-heading_small slds-p-bottom_medium">
+                    {headerLabel}
+                </h3>
+            </div>
+        </div>
+        <div class="slds-grid product-grid" >
+            <div class="slds-col slds-size_1-of-3">
+                <lightning-input
+                    lwc:ref="poInput"
+                    data-purchase-order-input
+                    name="po-number"
+                    label={inputLabel}
+                    placeholder={placeholderLabel}
+                ></lightning-input>
+            </div>
+        </div>
+        <label if:true={showError} class="slds-text-color_error slds-m-top_small">
+            Error: {error}
+        </label>
+    </div>
+</template>
