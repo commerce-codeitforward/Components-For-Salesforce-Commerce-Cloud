@@ -1,0 +1,41 @@
+/**
+ * Created by dillon.loubser on 10/26/23.
+ */
+
+.quantity-button {
+    width: 30px;
+    height: 100%;
+    border: none;
+    background-color: rgb(16, 6, 159);
+    color: #fff;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.slds-modal__content{
+    overflow: initial;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 180px;
+    height: 30px;  /* Increased height for a better look */
+    text-align: center;
+    align-self: flex-end;
+    border-radius: 5px;  /* Rounded corners */
+}
+
+.quantity-input {
+    width: 50px;
+    height: 100%;
+    text-align: center;
+    font-size: 14px;
+    /* border: none;  Removing the default border
+    outline: none;  Removing the default outline */
+}
