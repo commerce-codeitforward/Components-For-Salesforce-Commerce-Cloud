@@ -1,0 +1,22 @@
+<!-- AdVic Wishlist Item -->
+<template>
+    <div class="product-card slds-border_bottom">
+        <div class="product-image-section">
+            <img src={productInfo.thumbnailImage.url} alt={productInfo.thumbnailImage.alternateText} class="product-image"/>
+        </div>
+        <div class="product-details-section">
+            <p><a data-id={productInfo.productId} onclick={navigateToProduct}>{wishlistItemName}</a></p>
+        </div>
+        <div class="product-right-section">
+            <div class="quantity-selector">
+                <p>QTY</p>
+                <button onclick={decreaseQuantity} class="quantity-button">-</button>
+                <input value={quantity} oninput={handleQuantityChange} class="quantity-input"/>
+                <button onclick={increaseQuantity} class="quantity-button">+</button>
+            </div>
+        </div>
+        <div class="product-remove">
+            <lightning-button variant="base" class="slds-m-left_x-small" icon-name="action:close" title={removeLabel} onclick={notifyRemoveItem}></lightning-button>
+        </div>
+    </div>
+</template>
