@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>AccountManagement</members>
+        <members>AccountManagementTest</members>
+        <members>ConstantClass</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
+        <members>accountManagement</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <types>
+        <members>External_User_Admin</members>
+        <name>PermissionSet</name>
+    </types>
+    <version>59.0</version>
+</Package>

@@ -1,2 +1,6 @@
 .sfdx
 .DS_STORE
+
+# IDEs
+.idea
+.vscode

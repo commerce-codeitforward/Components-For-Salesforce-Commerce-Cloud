@@ -1,0 +1,36 @@
+<template>
+    <template if:true={hasEffectiveAccountId}>
+        <lightning-tabset active-tab-value={activeTab}>
+            <lightning-tab value="acct-mngt-users" label={membersTabLabel} onactive={handleTabClick} if:true={showMembersTab}>
+                <lightning-datatable
+                    key-field="id"
+                    data={userData}
+                    columns={userColumns}
+                ></lightning-datatable>
+            </lightning-tab>
+            <lightning-tab value="acct-mngt-carts" label={cartsTabLabel} onactive={handleTabClick} if:true={showCartsTab}>
+                <lightning-datatable
+                    key-field="id"
+                    data={cartData}
+                    columns={cartColumns}
+                ></lightning-datatable>
+            </lightning-tab>
+        </lightning-tabset>
+    </template>
+    <div class="slds-align_absolute-center" if:true={isLoading}>
+        <lightning-spinner
+            alternative-text="Loading"
+            size="medium"
+            variant="brand"
+        ></lightning-spinner>
+    </div>
+    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert" if:true={hasError}>
+        <span class="slds-assistive-text">error</span>
+        <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small">
+            <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+            </svg>
+        </span>
+        <h2>{getErrorMessage}</h2>
+    </div>
+</template>
