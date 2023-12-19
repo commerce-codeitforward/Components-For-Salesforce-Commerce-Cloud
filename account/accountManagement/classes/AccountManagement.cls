@@ -14,19 +14,24 @@ public with sharing class AccountManagement {
         }
         return [SELECT Id, Name, Email, Title, IsActive
             FROM User
-            WHERE AccountId = :accountId WITH USER_MODE];
+            WHERE AccountId = :accountId
+            WITH USER_MODE];
     }
 
     public static List<WebCart> getWebCartsByAccountId(String accountId, String webStoreId) {
+        Boolean multiCurrencyEnabled = Schema.getGlobalDescribe().containsKey('CurrencyType');
+
         if (String.isBlank(accountId) || String.isBlank(webStoreId)) {
             System.debug('Could not get web carts for account: ' + accountId + ' and web store: ' + webStoreId);
             return new List<WebCart>();
         }
-        return [SELECT Id, Name, OwnerId, Owner.Name, TotalProductAmount
-            FROM WebCart
-            WHERE Status = 'Active'
-            AND AccountId = :accountId
-            AND WebStoreId = :webStoreId WITH USER_MODE];
+
+        String query = 'SELECT Id, Name, OwnerId, Owner.Name, TotalProductAmount';
+        if (multiCurrencyEnabled) {
+            query += ', CurrencyIsoCode';
+        }
+        query += ' FROM WebCart WHERE Status = \'Active\' AND AccountId = :accountId AND WebStoreId = :webStoreId WITH USER_MODE';
+        return Database.query(query);
     }
 
     @AuraEnabled
