@@ -7,8 +7,15 @@ import WEB_CART_OBJECT from '@salesforce/schema/WebCart';
 import getAccountData from '@salesforce/apex/AccountManagement.getAccountData';
 import getConstants from '@salesforce/apex/AccountManagement.getConstants';
 import { errorDefault } from './labels';
+import {
+    mockedAccountId,
+    mockedWebStoreId,
+    mockedCartData,
+    mockedUserData
+} from './mockData';
 
 const DEFAULT_TAB_VALUE = 'acct-mngt-users';
+const DEFAULT_CURRENCY_CODE = 'USD';
 
 /**
  * Get the default user account
@@ -94,8 +101,13 @@ export default class AccountManagement extends LightningElement {
     @wire(AppContextAdapter)
     wireAppContext({ error, data, loading }) {
         this.isLoading = loading;
-        if (data) { this._webStoreId = data.webstoreId; }
-        if (error) { this.errorMessage = this.handleError(error); }
+        this.isPreview = this.isPreview || this.isInSitePreview();
+        if (this.isPreview) {
+            this._webStoreId = mockedWebStoreId;
+        } else {
+            if (data) { this.webStoreId = data.webstoreId; }
+            if (error) { this.errorMessage = this.handleError(error); }
+        }
     }
 
     /**
@@ -122,8 +134,13 @@ export default class AccountManagement extends LightningElement {
     @wire(ManagedAccountsAdapter, { includeMyAccount: true  })
     handleManagedAccounts({ error, data = [], loading }) {
         this.isLoading = loading;
-        if (data) { this._effectiveAccountId = effectiveAccount.accountId || getUserDefaultAccount(data) || ''; }
-        if (error) { this.errorMessage = this.handleError(error); }
+        this.isPreview = this.isPreview || this.isInSitePreview();
+        if (this.isPreview) {
+            this._effectiveAccountId = mockedAccountId;
+        } else {
+            if (data) { this.effectiveAccountId = effectiveAccount.accountId || getUserDefaultAccount(data) || ''; }
+            if (error) { this.errorMessage = this.handleError(error); }
+        }
     }
 
     /**
@@ -134,15 +151,25 @@ export default class AccountManagement extends LightningElement {
     async processAccountData() {
         try {
             this.isLoading = true;
+
+            const isCartsTabActive = (this.activeTab === this.cartsTab);
+            let data;
+
+            // exit early if there is no effective account id or web store id
             if (!this._effectiveAccountId || !this._webStoreId) {
                 return;
             }
-            const data = await getAccountData({
-                accountId: this._effectiveAccountId,
-                webStoreId: this._webStoreId,
-                activeTab: this.activeTab
-            });
-            const isCartsTabActive = (this.activeTab === this.cartsTab);
+
+            if (this.isPreview) {
+                data = isCartsTabActive ? mockedCartData : mockedUserData;
+            } else {
+                data = await getAccountData({
+                    accountId: this._effectiveAccountId,
+                    webStoreId: this._webStoreId,
+                    activeTab: this.activeTab
+                });
+            }
+
             this[isCartsTabActive ? 'cartData' : 'userData'] = this.mapDataToColumns(data, isCartsTabActive);
             this.isLoading = false;
         } catch (error) {
@@ -155,11 +182,12 @@ export default class AccountManagement extends LightningElement {
      * The connectedCallback() lifecycle hook fires when a component is inserted into the DOM.
      */
     async connectedCallback() {
+        this.isPreview = this.isInSitePreview();
         await this.processAccountData();
     }
 
     mapDataToColumns(data, mapCartData = false) {
-        return data.map(item => mapCartData ? this.mapCartDataToColumns(item) : this.mapUserDataToColumns(item));
+        return data.map(item => (mapCartData ? this.mapCartDataToColumns(item) : this.mapUserDataToColumns(item)));
     }
 
     mapUserDataToColumns(user) {
@@ -167,13 +195,18 @@ export default class AccountManagement extends LightningElement {
     }
 
     mapCartDataToColumns(cart) {
-        return { Name: cart?.Name || '', 'Owner.Name': cart?.Owner?.Name || '', TotalProductAmount: cart?.TotalProductAmount || '' };
+        const currencyFormatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: cart?.CurrencyIsoCode || DEFAULT_CURRENCY_CODE
+        });
+        const totalProductAmount = cart?.TotalProductAmount || 0;
+        return { Name: cart?.Name || '', 'Owner.Name': cart?.Owner?.Name || '', TotalProductAmount: currencyFormatter.format(totalProductAmount) };
     }
 
     handleError(err) {
         let errorMessage = errorDefault;
         if (Array.isArray(err?.body)) {
-            err.body.map(error => { errorMessage += error.message + ' '; });
+            err.body.forEach(error => { errorMessage += error.message + ' '; });
         } else if (typeof err?.body?.message === 'string') { errorMessage = err.body.message; }
         return errorMessage;
     }
@@ -182,6 +215,16 @@ export default class AccountManagement extends LightningElement {
         this.isLoading = true;
         this.activeTab = event?.target?.value || this.usersTab || DEFAULT_TAB_VALUE;
         this.processAccountData();
+    }
+
+    isInSitePreview() {
+        let url = document.URL;
+
+        return (url.indexOf('sitepreview') > 0
+            || url.indexOf('livepreview') > 0
+            || url.indexOf('live-preview') > 0
+            || url.indexOf('live.') > 0
+            || url.indexOf('.builder.') > 0);
     }
 
     @api get effectiveAccountId() {

@@ -1,14 +1,14 @@
 <template>
-    <template if:true={hasEffectiveAccountId}>
+    <template lwc:if={hasEffectiveAccountId}>
         <lightning-tabset active-tab-value={activeTab}>
-            <lightning-tab value="acct-mngt-users" label={membersTabLabel} onactive={handleTabClick} if:true={showMembersTab}>
+            <lightning-tab value="acct-mngt-users" label={membersTabLabel} onactive={handleTabClick} lwc:if={showMembersTab}>
                 <lightning-datatable
                     key-field="id"
                     data={userData}
                     columns={userColumns}
                 ></lightning-datatable>
             </lightning-tab>
-            <lightning-tab value="acct-mngt-carts" label={cartsTabLabel} onactive={handleTabClick} if:true={showCartsTab}>
+            <lightning-tab value="acct-mngt-carts" label={cartsTabLabel} onactive={handleTabClick} lwc:if={showCartsTab}>
                 <lightning-datatable
                     key-field="id"
                     data={cartData}
@@ -17,14 +17,14 @@
             </lightning-tab>
         </lightning-tabset>
     </template>
-    <div class="slds-align_absolute-center" if:true={isLoading}>
+    <div class="slds-align_absolute-center" lwc:if={isLoading}>
         <lightning-spinner
             alternative-text="Loading"
             size="medium"
             variant="brand"
         ></lightning-spinner>
     </div>
-    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert" if:true={hasError}>
+    <div class="slds-notify slds-notify_alert slds-alert_error" role="alert" lwc:if={hasError}>
         <span class="slds-assistive-text">error</span>
         <span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small">
             <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
