@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title="Basic Information">
+        <p class="slds-var-p-around_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-combobox name="contactId" class="validate" data-fieldid="ContactId" label="Contact" options={contactOptions} onchange={handleContactChange}></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-combobox name="profileId" class="validate" data-fieldid="ProfileId" label="Profile" options={profileOptions} required></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="firstName" class="validate" data-fieldid="FirstName" type="text" label="First Name" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="lastName" class="validate" data-fieldid="LastName" type="text" label="Last Name" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="email" class="validate" data-fieldid="Email" type="email" label="Email" pattern="^[A-Za-z0-9._-]+@[a-z0-9-]+\.[a-z]{2,}$" message-when-pattern-mismatch="Please enter a valid email" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="username" class="validate" data-fieldid="Username" type="email" label="Username" pattern="^[A-Za-z0-9._-]+@[a-z0-9-]+\.[a-z]{2,}$" message-when-pattern-mismatch="Please enter a valid username" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="nickname" class="validate" data-fieldid="CommunityNickname" type="text" label="Nickname" required></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-input name="alias" class="validate" data-fieldid="Alias" type="text" max-length="5" label="Alias" message-when-too-long="Alias has a maximum of 5 characters" required></lightning-input>
+                </lightning-layout-item>
+            </lightning-layout>
+        </p>
+    </lightning-card>
+    <lightning-card title="Language and Locale Settings">
+        <p class="slds-var-p-around_small">
+            <lightning-layout multiple-rows>
+                <lightning-layout-item padding="horizontal-small" size="12">
+                    <lightning-combobox name="timeZone" class="validate" data-fieldid="TimeZoneSidKey" label="Time Zone" options={timezoneOptions} value={defaultTimeZone} required></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-combobox name="locale" class="validate" data-fieldid="LocaleSidKey" label="Locale" options={localeOptions} value={defaultLocale} required></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size="6">
+                    <lightning-combobox name="language" class="validate" data-fieldid="LanguageLocaleKey" label="Language" options={languageOptions} value={defaultLanguage} required></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item padding="horizontal-small" size={getMultiCurrencyLayoutItemSize}>
+                    <lightning-combobox name="emailEncoding" class="validate" data-fieldid="EmailEncodingKey" label="Email Encoding" options={emailEncodingOptions} value={defaultEmailEncoding} required></lightning-combobox>
+                </lightning-layout-item>
+                <lightning-layout-item lwc:if={isMultiCurrencyEnabled} padding="horizontal-small" size={getMultiCurrencyLayoutItemSize}>
+                    <lightning-combobox name="defaultCurrencyIsoCode" class="validate" data-fieldid="DefaultCurrencyIsoCode" label="Currency" options={currencyOptions} value={defaultCurrency} required></lightning-combobox>
+                </lightning-layout-item>
+            </lightning-layout>
+        </p>
+    </lightning-card>
+
+    <lightning-layout>
+        <lightning-layout-item size="12" class="slds-text-align_right">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleUserCancel}></lightning-button>
+            <lightning-button variant="brand" label={label.addUser} title={label.addUser} onclick={handleUserCreation} icon-name="utility:adduser" class="slds-m-left_medium"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

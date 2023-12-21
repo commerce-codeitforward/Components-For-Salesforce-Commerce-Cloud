@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
     <labels>
+        <fullName>Account_AccountManagement_addUser</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_addUser</shortDescription>
+        <value>Add Member</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_buyerCreationErrorLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_buyerCreationErrorLabel</shortDescription>
+        <value>Buyer Creation Error</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_buyerCreationErrorMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_buyerCreationErrorMessage</shortDescription>
+        <value>There was an error creating the buyer member!</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_buyerCreationSuccessLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_buyerCreationSuccessLabel</shortDescription>
+        <value>Buyer Creation Successful</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_buyerCreationSuccessMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_buyerCreationSuccessMessage</shortDescription>
+        <value>Your buyer member was successfully added!</value>
+    </labels>
+    <labels>
         <fullName>Account_AccountManagement_errorDefault</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Account_AccountManagement_errorDefault</shortDescription>
         <value>An unexpected error occurred. Please try again later.</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_requiredFieldsLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_requiredFieldsLabel</shortDescription>
+        <value>Required Fields Missing</value>
+    </labels>
+    <labels>
+        <fullName>Account_AccountManagement_requiredFieldsMessage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account_AccountManagement_requiredFieldsMessage</shortDescription>
+        <value>Please fill out all required fields.</value>
     </labels>
 </CustomLabels>
