@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Cart Items</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property name="pageSize" type="Integer" label="Page size" description="Number of items to be displayed" default="10"/>
+            <property name="showRemoveItemOption" type="Boolean" label="Show remove item option" default="True"/>
+            <property name="showMoreItemsOption" type="Boolean" label="Show more items option" default="True"/>
+            <property name="showLineItemTotal" type="Boolean" label="Show line item total" default="True"/>
+            <property name="showOriginalPrice" type="Boolean" label="Show original price" default="True"/>
+            <property name="showSKU" type="Boolean" label="Show SKU" default="True"/>
+            <property name="showProductImage" type="Boolean" label="Show product image" default="True"/>
+            <property name="productFields" type="String" label="Product fields" description="Fields (API Names) to be displayed in this order separated by ;" default="ProductCode;Description"/>
+            <property name="showPricePerUnit" type="Boolean" label="Show price per unit" default="True"/>
+            <property name="showActualPrice" type="Boolean" label="Show actual price" default="True"/>
+            <property name="hideQuantitySelector" type="Boolean" label="Hide quantity selector" default="False"/>
+            <property name="showPromotions" type="Boolean" label="Show promotions" default="True"/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
