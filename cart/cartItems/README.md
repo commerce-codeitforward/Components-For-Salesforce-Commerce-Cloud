@@ -15,9 +15,11 @@ These components represent a light starter pack for displaying cart items, these
 2. Navigate to the Cart Page in Experience Builder
 3. Delete the OOTB 'Cart Items' component
 4. Drag the new 'Cart Items' (located under the custom component section) inside the itemsBody on the cart page.
-5. Publish the Site
-6. Test it as logged-in user
-7. (Optional) Adapt the component logic to your needs.
+5. Customize component settings:
+![Component Properties](./docs/images/properties.png)
+6. Publish the Site
+7. Test it as logged-in user
+8. (Optional) Adapt the component logic to your needs.
 
 ## Considerations
 This version does not support following features:
