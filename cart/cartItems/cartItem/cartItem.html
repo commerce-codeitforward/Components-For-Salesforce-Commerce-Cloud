@@ -1,0 +1,90 @@
+<template>
+    <div class="slds-grid slds-wrap slds-var-p-around_small">
+        <div lwc:if={showProductImage} class="slds-col slds-size_4-of-12 slds-large-size_2-of-12">
+            <img alt={item.productDetails.thumbnailImage.alternateText}
+                onclick={handleProductRedirection}
+                src={item.productDetails.thumbnailImage.url}>
+        </div>
+        <div class="slds-col slds-grid slds-wrap slds-size_8-of-12 slds-large-size_10-of-12">
+            <div class="slds-gutters slds-grid slds-wrap slds-col">
+                <div class="slds-col slds-size_1-of-1 slds-large-size_6-of-12" style="flex: auto;">
+                    <a onclick={handleProductRedirection}>
+                        <h2><b>{item.productDetails.name}</b></h2>
+                    </a>
+                    <div lwc:if={showSku} class="productAttribute">
+                        SKU# <lightning-formatted-rich-text value={item.productDetails.sku}>
+                        </lightning-formatted-rich-text>
+                    </div>
+                    <template for:each={fieldsWithLabels} for:item="itemField">
+                        <div key={itemField} class="productAttribute">
+                            {itemField.label}: <lightning-formatted-rich-text value={itemField.value}>
+                            </lightning-formatted-rich-text>
+                        </div>
+                    </template>
+                </div>
+                <div lwc:if={showPricePerUnit} class="slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-text-align_right" style="flex: auto;">
+                    <lightning-formatted-number
+                        format-style="currency"
+                        currency-code={currencyCode}
+                        currency-display-as="symbol"
+                        maximum-fraction-digits="2"
+                        value={item.salesPrice}>
+                    </lightning-formatted-number>/item
+                </div>
+                <div lwc:if={showLineItemTotal} class="slds-grid slds-wrap slds-col slds-size_1-of-1 slds-large-size_3-of-12 slds-text-align_right">
+                    <div lwc:if={showActualPrice} class="slds-col slds-size_1-of-1">
+                        <b>
+                            <lightning-formatted-number
+                                format-style="currency"
+                                currency-code={currencyCode}
+                                currency-display-as="symbol"
+                                maximum-fraction-digits="2"
+                                value={item.price}>
+                            </lightning-formatted-number>
+                        </b>
+                    </div>
+                    <div lwc:if={needsOriginalPrice} class="slds-col slds-size_1-of-1 listPrice">
+                        <lightning-formatted-number
+                            format-style="currency"
+                            currency-code={currencyCode}
+                            currency-display-as="symbol"
+                            maximum-fraction-digits="2"
+                            value={item.listPrice}>
+                        </lightning-formatted-number>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div if:false={hideQuantitySelector} style="display: flex; margin-top: 20px;">
+                    <lightning-helptext lwc:if={hasQuantityRule} content={quantityRuleHelpText} style="margin-right: 5px;"></lightning-helptext>
+                    <lightning-button-icon disabled={stopDecreaseQuantity} class="quantityButton quantityDecrementButton"
+                        icon-name="utility:dash" onclick={decreaseQty}>
+                        <label>Decrease</label>
+                    </lightning-button-icon>
+                    <lightning-input lwc:ref="quantitySelector" type="number" formatter="decimal"
+                        class="slds-text-align_center quantityInput" onblur={handleQtyChange}
+                        name="quantity" value={quantity} min={minQuantity} max={maxQuantity} step={incrementStep}></lightning-input>
+                    <lightning-button-icon disabled={stopIncreaseQuantity} class="quantityButton quantityIncrementButton" 
+                        icon-name="utility:add" onclick={increaseQty}>
+                        <label>Increase</label>
+                    </lightning-button-icon>
+                    
+                    <lightning-button lwc:if={showRemoveItemOption}
+                        onclick={handleDelete} variant="base"
+                        label="Delete" title="Delete"
+                        class="slds-var-m-left_x-small">
+                    </lightning-button>
+                </div>
+                <div lwc:if={savedAmount} class="customBadge" style={additionalBadgeStyle}>
+                    Saved <lightning-formatted-number
+                        format-style="currency"
+                        currency-code={currencyCode}
+                        currency-display-as="symbol"
+                        maximum-fraction-digits="2"
+                        value={savedAmount}>
+                    </lightning-formatted-number>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

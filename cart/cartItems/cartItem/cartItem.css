@@ -1,0 +1,45 @@
+.productAttribute {
+    color: var(--dxp-g-neutral-3);
+    font-size: var(--dxp-g-font-size-4);
+}
+
+.quantityButton {
+    --dxp-s-button-radius-border: 8px;
+    display: inline-flex;
+}
+
+.quantityButton {
+    --dxp-g-neutral-3: var(--dxp-g-root-contrast);
+    --dxp-g-neutral-1: var(--dxp-g-root-contrast);
+}
+
+.quantityDecrementButton {
+    --sds-c-button-radius-border: var(--dxp-s-button-radius-border) 0 0 var(--dxp-s-button-radius-border);
+}
+
+.quantityIncrementButton {
+    --sds-c-button-radius-border: 0 var(--dxp-s-button-radius-border) var(--dxp-s-button-radius-border) 0;
+}
+
+.quantityInput {
+    --dxp-s-form-element-radius-border: 0;
+    display: inline-block;
+    width: 6rem;
+    top: -24px;
+}
+
+.listPrice {
+    text-decoration: line-through;
+    color: var(--dxp-g-neutral-3);
+    font-size: var(--dxp-g-font-size-4);
+}
+
+.customBadge {
+    display: inline-block;
+    border-radius: 10px;
+    background-color: var(--dxp-g-success-1);
+    color: var(--dxp-g-root);
+    font-size: 12px;
+    padding: 5px;
+    position: relative;
+}
