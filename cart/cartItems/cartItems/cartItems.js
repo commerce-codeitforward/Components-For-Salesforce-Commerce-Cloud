@@ -1,86 +1,187 @@
 import { LightningElement, api, track, wire } from 'lwc';
-import { getAppContext, getSessionContext } from 'commerce/contextApi';
 import { navigate, NavigationContext } from 'lightning/navigation';
-import { currentRelease } from 'commerce/config';
+import { getSessionContext } from 'commerce/contextApi';
+import { createCartItemsLoadAction, dispatchActionAsync } from 'commerce/actionApi';
 import { previewData } from './mockData';
-import basePathName from '@salesforce/community/basePath';
-const API_VERSION = currentRelease.apiVersion;
 
+/**
+ * UI component that displays current cart items
+ */
 export default class CartItems extends LightningElement {
+    /**
+     * @description Enable the component to render as light DOM
+     */
+    static renderMode = 'light';
+
+    /**
+     * @description UI labels, to be replaced by Custom Labels and their translations
+     */
+    labels = {
+        showMore: 'Show More',
+        minQty: 'Min Qty',
+        maxQty: 'Max Qty',
+        incrementStep: 'Increment step',
+        sku: 'SKU',
+        item: 'item',
+        decrease: 'Decrease',
+        increase: 'Increase',
+        delete: 'Delete',
+        saved: 'Saved'
+    }
+
+    /**
+     * @description Custom page size for items to display
+     */
     @api pageSize;
+
+    /**
+     * @description Show the "Delete" button
+     */
     @api showRemoveItemOption;
+
+    /**
+     * @description Show Line Item Total
+     */
     @api showLineItemTotal;
+
+    /**
+     * @description Show the "Show More" button
+     */
     @api showMoreItemsOption;
+
+    /**
+     * @description Show Original Price
+     */
     @api showOriginalPrice;
+
+    /**
+     * @description Show Product SKU
+     */
     @api showSKU;
+
+    /**
+     * @description Show Product Thumbnail Image
+     */
     @api showProductImage;
+
+    /**
+     * @description List of fields (Api Names) to display for each Item
+     */
     @api productFields;
+
+    /**
+     * @description Show Price per Unit
+     */
     @api showPricePerUnit;
+
+    /**
+     * @description Show Actual Price
+     */
     @api showActualPrice;
+
+    /**
+     * @description Hide/Show the Quantity Selector
+     */
     @api hideQuantitySelector;
+
+    /**
+     * @description Show Promotions per Item
+     */
     @api showPromotions;
 
-    isPreview;
-    cartId;
-    webstoreId;
-    nextPageToken;
-    currencyCode;
-
-    @track cartItems = [];
+    /**
+     * @description Cart Items provided by the Cart Data Expression
+     */
+    @api cartItems;
+    
+    /**
+     * @description Total Count of Items in the cart (provided by the Cart Data Expression)
+     */
+    @api uniqueProductCount;
+    
+    /**
+     * @description Cart Items data to show in UI, handles pagination against pageSize property
+     */
+    @track cartItemsToShow = [];
 
     @wire(NavigationContext)
     navContext;
 
     /**
-     * Get webstore id, then either return mock data if it's a preview site, or retrieve real data
+     * @description Preview mode if component is rendered in the Builder
      */
-    async connectedCallback(){
-        const [appContext, sessionContext] = await Promise.all([getAppContext(), getSessionContext()]);
+    isPreview;
+
+    /**
+     * @description Number of current pages displayed (custom pagination)
+     */
+    pages = 0;
+
+    /**
+     * @description Shows mock data if component is displayed in the Builder
+     * or real data from the Cart Data Expressions (with custom pagination handling)
+     * @async
+     */
+    async connectedCallback() {
+        const sessionContext = await getSessionContext();
         this.isPreview = sessionContext.isPreview;
         if (this.isPreview) {
-            this.cartItems = previewData;
+            this.cartItemsToShow = previewData;
             return;
+        } else if (this.cartItems.length !== 0) {
+            this.requestMoreCartItems();
         }
-        this.webstoreId = appContext.webstoreId;
-        this.getCartItems();
     }
 
     /**
-     * Retrieve cart items from the API, method supports getting additional items whenever the user clicks 'Show more'
+     * @description Triggers a 'Load More Cart Items' action at the CartItemsAdapter
+     * @async
      */
-    async getCartItems() {
-        let baseURL = `${basePathName}/webruntime/api/services/data/${API_VERSION}/commerce/webstores/${this.webstoreId}/carts/current/cart-items`;
-        // these hardcoded parameters can always be dynamically configured
-        baseURL += `?includePromotions=true&includeCoupons=true&sort=CreatedDateDesc&productFields=*&pageSize=${this.pageSize}`;
-        // append nextPageToken if it's required (not required the first time the component is loaded)
-        const response = await fetch(baseURL + (this.nextPageToken ? `&page=${this.nextPageToken}` : ''));
-        const cartItemsData = await response.json();
-        // map content
-        if (cartItemsData) {
-            this.cartItems = [...this.cartItems, ...cartItemsData.cartItems.map(this.mapCartItem)];
-            this.currencyCode = cartItemsData.cartSummary.currencyIsoCode;
-            this.nextPageToken = cartItemsData.nextPageToken;
-        } else {
-            this.cartItems = [];
+    async requestMoreCartItems() {
+        // increase current pages count
+        this.pages++;
+        // while current items are less than what should be displayed && less than the total items in the cart
+        // ==> request more items from the API
+        while (this.cartItems.length < (this.pages*this.pageSize) 
+                && this.cartItems.length < this.uniqueProductCount) {
+            await dispatchActionAsync(this, createCartItemsLoadAction());
         }
+        // show only the necessary items (from 1st item in 1st page to latest in last page)
+        this.cartItemsToShow = this.cartItems.slice(0, this.pages*this.pageSize);
     }
 
+    /**
+     * @description Show or hide "Show More" button, based on configuration or pagination state
+     * @returns {boolean}
+     */
     get needsToShowMore() {
-        return this.showMoreItemsOption && (this.nextPageToken || this.isPreview);
+        return this.showMoreItemsOption 
+            && (this.isPreview || this.cartItemsToShow.length < this.uniqueProductCount);
     }
 
-    async handleShowMoreButton() {
+    /**
+     * @description Requests more cart items either from the cache or CartItemsAdapter
+     */
+    handleShowMoreButton() {
         if (!this.isPreview) {
-            this.getCartItems();
+            this.requestMoreCartItems();
         }
     }
 
+    /**
+     * @description Removes the deleted item from the current list
+     * @param {CustomEvent} e
+     */
     handleDeleteCartItem(e) {
         e.stopPropagation();
         const cartItemId = e.detail;
-        this.cartItems = this.cartItems.filter(item => item.id !== cartItemId);
+        this.cartItemsToShow = this.cartItemsToShow.filter(item => item.id !== cartItemId);
     }
 
+    /**
+     * @description Handles navigation to selected cart item's product
+     * @param {CustomEvent} e
+     */
     handleProductNavigation(e) {
         navigate(this.navContext, {
             type: 'standard__recordPage',
@@ -92,62 +193,4 @@ export default class CartItems extends LightningElement {
             },
         });
     }
-
-    // Cart item mapping function
-    mapCartItem = (sourceCartItem) => {
-        const {
-            cartItem: {
-                cartItemId: id,
-                name,
-                quantity,
-                type,
-                itemizedAdjustmentAmount,
-                salesPrice,
-                totalAdjustmentAmount: adjustmentAmount,
-                totalAmount: totalAmount,
-                totalListPrice: listPrice,
-                totalPrice: price,
-                totalTax: tax,
-                unitAdjustedPrice,
-                unitAdjustmentAmount,
-                productDetails,
-            },
-            messages,
-            subscriptionId,
-            subscriptionTermUnit,
-            subscriptionTerm,
-            subscriptionType,
-        } = sourceCartItem;
-
-        return {
-            id,
-            name,
-            quantity,
-            type,
-            itemizedAdjustmentAmount,
-            salesPrice,
-            adjustmentAmount,
-            totalAmount,
-            listPrice,
-            price,
-            tax,
-            unitAdjustedPrice,
-            unitAdjustmentAmount,
-            productDetails: {
-                name: productDetails.fields.Name,
-                productId: productDetails.productId,
-                purchaseQuantityRule: productDetails.purchaseQuantityRule,
-                sku: productDetails.sku,
-                fields: productDetails.fields,
-                thumbnailImage: productDetails.thumbnailImage,
-                variationAttributes: productDetails.variationAttributes,
-                productSubscriptionInformation: productDetails.productSubscriptionInformation,
-            },
-            Messages: messages,
-            subscriptionId,
-            subscriptionTermUnit,
-            subscriptionTerm,
-            subscriptionType,
-        };
-    };
 }
