@@ -7,10 +7,11 @@
 - [Considerations](#considerations)
 
 ## Overview
-These Lightning Web Components represent a light starter pack for displaying cart items, these components support:
+These Lightning Web Components serve as a lightweight starter pack for displaying cart items; these components support:
 - Preview data for Experience Builder
 - UI similar to OOTB components
 - Relying on --dxp styling hooks for most of the color attributes
+- Relying on [Cart Data Expressions](https://help.salesforce.com/s/articleView?id=sf.comm_components_expressions_cart.htm&type=5) for retrieving data from the Cart page
 - Declarative approach to configuration via properties panel
 - Dynamic page size property (check more details [here](#dynamic-page-size))
 - Aware of Sorting options set by the OOTB component.
@@ -19,11 +20,11 @@ These Lightning Web Components represent a light starter pack for displaying car
 - No boilerplate Apex code for quick plug-and-play.
 
 ## Dynamic Page Size
-The component uses the [`CartItemsAdapter`](https://developer.salesforce.com/docs/atlas.en-us.b2b_b2c_comm_dev.meta/b2b_b2c_comm_dev/b2b_b2c_comm_display_lwc_apis.htm#Adapters-in-the-Commerce-Namespace) which fetches by default up to 25 items per request. This custom component handles pagination against the custom property `pageSize` as follows:
-- Request up to 25 items from the API
-- If the total items to show (calculated based on `pageSize`) is greater than 25, it requests more items from the API
-- If the total items to show is less than 25, it shows the total of items specified by `pageSize`
-- It repeats this process each time the user requests for more items.
+The component utilizes the [`CartItemsAdapter`](https://developer.salesforce.com/docs/atlas.en-us.b2b_b2c_comm_dev.meta/b2b_b2c_comm_dev/b2b_b2c_comm_display_lwc_apis.htm#Adapters-in-the-Commerce-Namespace) which by default fetches up to 25 items per request. This custom component manages pagination based on the custom property `pageSize` in the following way:
+- Requests up to 25 items from the API.
+- If the total number of items to display (calculated based on `pageSize`) exceeds 25, it requests additional items from the API.
+- If the total number of items to display is less than or equal to 25, it shows the total number of items specified by `pageSize`.
+- This process repeats each time the user requests more items.
 
 ## Installation Steps
 1. Deploy both components `cartItem` and `cartItems` to your instance

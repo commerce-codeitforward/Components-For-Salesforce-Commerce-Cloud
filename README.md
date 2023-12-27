@@ -23,6 +23,7 @@ The following components are the current components available in this repository
 
 | Component  | Page | Status | Demo Video |
 | ------------- | ------------- | ------------- | ------------- |
+| Cart Items  | Cart  | Ready | - |
 | Cart Summary  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
 | Shipping Method  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 | Shipping Instructions  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
