@@ -23,24 +23,12 @@ The following components are the current components available in this repository
 
 | Component  | Page | Status | Demo Video |
 | ------------- | ------------- | ------------- | ------------- |
-| Cart Items  | Cart  | Ready | - |
-| Cart Summary  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
-| Shipping Method  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
-| Shipping Instructions  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
-| Simple Purchase Order  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
+| [Cart Items](/cart/cartItems/)  | Cart  | Ready | - |
+| [Cart Summary](/cart/cartSummary/)  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
+| [Shipping Method](/checkout/shippingMethod/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
+| [Shipping Instructions](/checkout/shippingInstructions/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
+| [Simple Purchase Order](/checkout/simplePurchaseOrder/)  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
+| [Account](/account/)  | Account  | Ready | - |
 
-## Feature Sections
-
-<details>
-<summary>[Checkout](/checkout/README.md)</summary>
-1. [Shipping Instructions](/checkout/shippingInstructions/README.md)
-2. [Shipping Method](/checkout/shippingMethod/README.md)
-3. [Simple Purchase Order](/checkout/simplePurchaseOrder/README.md)
-</details>
-
-<details>
-<summary>[Cart](/cart/README.md)</summary>
-1. [Cart Summary](/cart/cartSummary/README.md)
-</details>
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!
