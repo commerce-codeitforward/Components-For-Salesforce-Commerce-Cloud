@@ -6,6 +6,6 @@ In-depth documentation and installation steps can be found by navigating to the 
 ### List of Components
 Below are the current components available in this section of the repository.
 
-| **Component**                                       | **Description**                                                                             | **Demo Video** |
-|-----------------------------------------------------|---------------------------------------------------------------------------------------------|----------------|
-| [Account Management](./accountManagement/README.md) | This component shows the buyer members/users and carts for the current `effectiveAccountId` | None           |
+| **Component**                                       | **Description**                                                                                        | **Demo Video** |
+|-----------------------------------------------------|--------------------------------------------------------------------------------------------------------|----------------|
+| [Account Management](./accountManagement/README.md) | This component allows management of buyer members/users and carts for the current `effectiveAccountId` | None           |

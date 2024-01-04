@@ -1,12 +1,20 @@
-import {api, LightningElement, wire} from 'lwc';
-import { AppContextAdapter } from 'commerce/contextApi';
-import { effectiveAccount, ManagedAccountsAdapter } from 'commerce/effectiveAccountApi';
+import { api, LightningElement, wire } from 'lwc';
+import ToastContainer from 'lightning/toastContainer';
+import Toast from 'lightning/toast';
 import { getObjectInfos } from 'lightning/uiObjectInfoApi';
+import { AppContextAdapter, SessionContextAdapter } from 'commerce/contextApi';
+import { effectiveAccount, ManagedAccountsAdapter } from 'commerce/effectiveAccountApi';
+import currency from '@salesforce/i18n/currency';
 import USER_OBJECT from '@salesforce/schema/User';
 import WEB_CART_OBJECT from '@salesforce/schema/WebCart';
+import userId from '@salesforce/user/Id';
 import getAccountData from '@salesforce/apex/AccountManagement.getAccountData';
 import getConstants from '@salesforce/apex/AccountManagement.getConstants';
-import { errorDefault } from './labels';
+import isDelegatedExternalUserAdmin from '@salesforce/apex/AccountManagement.isDelegatedExternalUserAdmin';
+import {
+    addUser,
+    errorDefault
+} from './labels';
 import {
     mockedAccountId,
     mockedWebStoreId,
@@ -15,7 +23,7 @@ import {
 } from './mockData';
 
 const DEFAULT_TAB_VALUE = 'acct-mngt-users';
-const DEFAULT_CURRENCY_CODE = 'USD';
+const DEFAULT_CURRENCY_CODE = currency;
 
 /**
  * Get the default user account
@@ -38,6 +46,23 @@ export default class AccountManagement extends LightningElement {
     @api showCartsTab;
     @api membersTabLabel;
     @api cartsTabLabel;
+    @api permissionSetNames;
+
+    isModalOpen = false;
+    openModal() {
+        this.isModalOpen = true;
+    }
+    closeModal() {
+        this.isModalOpen = false;
+    }
+
+    handleUserCancel() {
+        this.isModalOpen = false;
+    }
+
+    label = {
+        addUser
+    };
 
     /**
      * stores current web store id
@@ -48,6 +73,12 @@ export default class AccountManagement extends LightningElement {
      * stores current effective id
      */
     _effectiveAccountId;
+
+    /**
+     * stores user data
+     */
+    userId = userId;
+    isDelegatedExternalAdmin = false;
 
     /**
      * stores the active tab
@@ -96,18 +127,31 @@ export default class AccountManagement extends LightningElement {
     }
 
     /**
+     * get the delegated external admin status
+     */
+    @wire(isDelegatedExternalUserAdmin, { userId: '$userId' })
+    wiredPermission({ error, data }) {
+        if (data) { this.isDelegatedExternalAdmin = data; }
+        if (error) { this.errorMessage = this.handleError(error); }
+    }
+
+    /**
      * get the web store id from the AppContextAdapter
      */
     @wire(AppContextAdapter)
     wireAppContext({ error, data, loading }) {
         this.isLoading = loading;
-        this.isPreview = this.isPreview || this.isInSitePreview();
         if (this.isPreview) {
             this._webStoreId = mockedWebStoreId;
         } else {
-            if (data) { this.webStoreId = data.webstoreId; }
+            if (data) { this.updateWebStoreId(data.webstoreId); }
             if (error) { this.errorMessage = this.handleError(error); }
         }
+    }
+
+    @wire(SessionContextAdapter)
+    wireSessionContext({ data }) {
+        if (data) { this.isPreview = data.isPreview; }
     }
 
     /**
@@ -134,11 +178,10 @@ export default class AccountManagement extends LightningElement {
     @wire(ManagedAccountsAdapter, { includeMyAccount: true  })
     handleManagedAccounts({ error, data = [], loading }) {
         this.isLoading = loading;
-        this.isPreview = this.isPreview || this.isInSitePreview();
         if (this.isPreview) {
             this._effectiveAccountId = mockedAccountId;
         } else {
-            if (data) { this.effectiveAccountId = effectiveAccount.accountId || getUserDefaultAccount(data) || ''; }
+            if (data) { this.updateEffectiveAccountId(effectiveAccount.accountId || getUserDefaultAccount(data) || ''); }
             if (error) { this.errorMessage = this.handleError(error); }
         }
     }
@@ -178,12 +221,31 @@ export default class AccountManagement extends LightningElement {
         }
     }
 
+    handleUserCreationResponse(event) {
+        const toastDetails = event.detail;
+        Toast.show({
+            label: toastDetails.label,
+            message: toastDetails.message,
+            mode: toastDetails.mode,
+            variant: toastDetails.variant
+        }, this);
+
+        if (toastDetails.variant === 'success') {
+            this.closeModal();
+            this.processAccountData();
+        }
+    }
+
     /**
      * The connectedCallback() lifecycle hook fires when a component is inserted into the DOM.
      */
     async connectedCallback() {
-        this.isPreview = this.isInSitePreview();
         await this.processAccountData();
+
+        // set up toast container
+        const toastContainer = ToastContainer.instance();
+        toastContainer.maxToasts = 3;
+        toastContainer.toastPosition = 'top-center';
     }
 
     mapDataToColumns(data, mapCartData = false) {
@@ -217,20 +279,10 @@ export default class AccountManagement extends LightningElement {
         this.processAccountData();
     }
 
-    isInSitePreview() {
-        let url = document.URL;
-
-        return (url.indexOf('sitepreview') > 0
-            || url.indexOf('livepreview') > 0
-            || url.indexOf('live-preview') > 0
-            || url.indexOf('live.') > 0
-            || url.indexOf('.builder.') > 0);
-    }
-
     @api get effectiveAccountId() {
         return this._effectiveAccountId;
     }
-    set effectiveAccountId(value) {
+    updateEffectiveAccountId(value) {
         this._effectiveAccountId = value;
         this.processAccountData();
     }
@@ -238,7 +290,7 @@ export default class AccountManagement extends LightningElement {
     @api get webStoreId() {
         return this._webStoreId;
     }
-    set webStoreId(value) {
+    updateWebStoreId(value) {
         this._webStoreId = value;
         this.processAccountData();
     }

@@ -2,20 +2,47 @@
     <template lwc:if={hasEffectiveAccountId}>
         <lightning-tabset active-tab-value={activeTab}>
             <lightning-tab value="acct-mngt-users" label={membersTabLabel} onactive={handleTabClick} lwc:if={showMembersTab}>
-                <lightning-datatable
-                    key-field="id"
-                    data={userData}
-                    columns={userColumns}
-                ></lightning-datatable>
+                <div class="tab-content users-container">
+                    <template lwc:if={isDelegatedExternalAdmin}>
+                        <lightning-button variant="brand" label={label.addUser} title={label.addUser} icon-name="utility:adduser" class="btn-add-user slds-m-left_x-small slds-float_right" onclick={openModal}></lightning-button>
+                    </template>
+                    <lightning-datatable
+                        key-field="id"
+                        data={userData}
+                        columns={userColumns}
+                    ></lightning-datatable>
+                </div>
             </lightning-tab>
             <lightning-tab value="acct-mngt-carts" label={cartsTabLabel} onactive={handleTabClick} lwc:if={showCartsTab}>
-                <lightning-datatable
-                    key-field="id"
-                    data={cartData}
-                    columns={cartColumns}
-                ></lightning-datatable>
+                <div class="tab-content carts-container">
+                    <lightning-datatable
+                        key-field="id"
+                        data={cartData}
+                        columns={cartColumns}
+                    ></lightning-datatable>
+                </div>
             </lightning-tab>
         </lightning-tabset>
+
+        <template lwc:if={isModalOpen}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{label.addUser}</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <c-add-community-user
+                            account-id={effectiveAccountId}
+                            permission-set-names={permissionSetNames}
+                            oncancelusercreation={closeModal}
+                            onusercreationresponse={handleUserCreationResponse}>
+                        </c-add-community-user>
+                    </div>
+                    <footer class="slds-modal__footer"></footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
     </template>
     <div class="slds-align_absolute-center" lwc:if={isLoading}>
         <lightning-spinner

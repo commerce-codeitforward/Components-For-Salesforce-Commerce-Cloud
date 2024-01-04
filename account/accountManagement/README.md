@@ -15,10 +15,13 @@
 - [Create the Account Management Page](#create-the-account-management-page)
 - [Add the Account Management Page to the User Profile Navigation Menu](#add-the-account-management-page-to-the-user-profile-navigation-menu)
 - [Confirm the Account Management Page is Working](#confirm-the-account-management-page-is-working)
+- [Add New Buyer Members/Users](#add-new-buyer-members--users)
 </details>
 
 ## Overview
-This component lists Community Members/Users and Carts similar to what was previously available on the Aura B2B **Account Management** page.
+This component:
+1. lists Buyer Members/Users and Carts
+2. allows a Buyer Manager with **Delegated External User Administrator** permissions to create new contacts and buyer members
 
 ## Deploy
 
@@ -61,6 +64,9 @@ Run `sf force mdapi deploy -d <path-to-this-directory> -u <org-username> -w -1`
 10. Click **Manage Assignments**
 11. Click **Add Assignments**
 12. Select the applicable Buyer Manager users
+
+Additional Resources:
+- [Delegate Site Administration to an External User](https://help.salesforce.com/s/articleView?id=sf.networks_DPUA.htm&type=5)
 
 #### Option 2: Add the Permission to a Profile
 1. Navigate to **Setup** -> **Users** -> **Profiles**
@@ -108,3 +114,32 @@ Navigate to the Account Management page in your community and confirm:
 2. regular buyers see only their own user and cart
    - ![Buyer Members](./docs/images/buyer-members.png)
    - ![Buyer Carts](./docs/images/buyer-carts.png)
+
+## Add New Buyer Members / Users
+The **addCommunityUser** component can be used to add new contacts and community members/users. This component is available on the **Account Management** page for users with **Delegated External User Administrator** permissions. You can select an existing contact tied to the account or create a new contact. A new community user will be created and tied to the account and contact.
+![Add Buyer Member](./docs/images/add-buyer-member.png)
+
+The list of available profiles on the component are pulled from the selected profiles on your community:
+1. Navigate to **Setup** -> **Digital Experiences** -> **All Sites** -> Click the **Workspaces** link for your site
+2. Click the **Administration** tile
+3. Click **Members** in the left hand navigation
+4. The **Selected Profiles**, excluding the System Administrator profile, are the profiles that will be available on the **addCommunityUser** component
+![Selected Profiles](./docs/images/experience-selected-profiles.png)
+
+### Prerequisites
+The following prerequisites must be met before a Buyer Manager can create a new buyer contact and user:
+1. The Buyer Manager must have **Delegated External User Administrator** permissions. See [Ensure your Buyer Manager has "Delegated External User Administrator" Permissions](#ensure-your-buyer-manager-has-delegated-external-user-administrator-permissions)
+2. The Buyer Manager must have a **Buyer Manager Profile** (or profile with access to the **AccountManagement** class). See [Allow Profiles to Access the AccountManagement Class](#allow-profiles-to-access-the-accountmanagement-class)
+3. The Buyer Manager must have the **Buyer Manager** permission set
+4. Assign the list of allowable user profiles to the Buyer Manager's profile:
+   1. Navigate to **Setup** -> **Users** -> **Profiles**
+   2. Click the label for the applicable Buyer Manager profile (e.g.: `Buyer Manager Profile`)
+   3. Search for **Delegated External User Profiles** (near bottom of page)
+      - ![Delegated External User Profiles](./docs/images/buyer-mngr-profile-add-allowed-profiles.png)
+   4. Click **Edit**
+   5. Check all the applicable profiles (e.g.: `Buyer Profile`, `Customer Community Plus`, etc.)
+   6. Click **Save**
+      - ![Delegated External User Profiles](./docs/images/buyer-mngr-profile-select-allowed-profiles.png)
+5. If you need additional permission sets added to your buyer member users, this can be done by specifying a comma-seperated list of **Permission Set API Names** on the component
+    - ![Permission Set API Names on Component](./docs/images/permission-set-api-name-component.png)
+    - ![Permission Set API Name](./docs/images/permission-set-api-name.png)

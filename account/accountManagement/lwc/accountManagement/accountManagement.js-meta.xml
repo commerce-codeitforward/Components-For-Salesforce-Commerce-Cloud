@@ -14,6 +14,7 @@
             <property name="membersTabLabel" type="String" label="Members Tab Name" description="The tab label for community members" default="Members"/>
             <property name="showCartsTab" type="Boolean" label="Show Carts Tab?" description="Should show cart tab?" default="true"/>
             <property name="cartsTabLabel" type="String" label="Carts Tab Name" description="The tab label for carts" default="Carts"/>
+            <property name="permissionSetNames" type="String" label="Permission Set API Names" description="A comma seperated list of Permission Set API Names that should be added to new members" placeholder="B2BBuyer,Account_Switcher_User"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
