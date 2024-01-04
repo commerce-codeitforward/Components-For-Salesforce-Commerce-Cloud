@@ -13,7 +13,7 @@ export const previewData = [
         tax: undefined,
         unitAdjustedPrice: 9,
         unitAdjustmentAmount: 0,
-        productDetails: {
+        ProductDetails: {
             name: 'SolarFlex Pro 10AWG Cable',
             productId: '01txx0000006i2rAAA',
             purchaseQuantityRule: undefined,
@@ -60,7 +60,7 @@ export const previewData = [
         tax: undefined,
         unitAdjustedPrice: 22.5,
         unitAdjustmentAmount: 0,
-        productDetails: {
+        ProductDetails: {
             name: 'PowerLink Pro Connector Kit',
             productId: '01txx0000006iDjAAI',
             purchaseQuantityRule: undefined,
@@ -120,7 +120,7 @@ export const previewData = [
         tax: undefined,
         unitAdjustedPrice: 9,
         unitAdjustmentAmount: 0,
-        productDetails: {
+        ProductDetails: {
             name: 'SolarMax Ultra 500W',
             productId: '01txx0000006i2rAAA',
             purchaseQuantityRule: undefined,

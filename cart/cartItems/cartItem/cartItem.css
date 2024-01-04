@@ -1,3 +1,7 @@
+.thumbnailImg:hover {
+    cursor: pointer;
+}
+
 .productAttribute {
     color: var(--dxp-g-neutral-3);
     font-size: var(--dxp-g-font-size-4);
@@ -42,4 +46,52 @@
     font-size: 12px;
     padding: 5px;
     position: relative;
+}
+
+.autoFlex {
+    flex: auto;
+}
+
+.actionsContainer {
+    display: flex;
+}
+
+.quantitySelectorContainer {
+    display: flex;
+    margin-top: 20px;
+}
+
+.helpText {
+    margin-right: 5px;
+}
+
+.dynamicTextAlign {
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    text-align: right;
+}
+
+.deleteBtn {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .dynamicTextAlign {
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+        text-align: left;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .actionsContainer {
+        flex-direction: column;
+    }
+
+    .deleteBtn {
+        margin: 0;
+        position: relative;
+        top: -25px;
+    }
 }

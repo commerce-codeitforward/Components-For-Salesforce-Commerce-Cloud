@@ -9,7 +9,9 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
-            <property name="pageSize" type="Integer" label="Page size" description="Number of items to be displayed" default="10"/>
+            <property name="cartItems" type="String" label="Cart Items" description="Defaults to {!Cart.Items}" default="{!Cart.Items}"/>
+            <property name="uniqueProductCount" type="String" label="Unique Product Count" description="Defaults to {!Cart.Details.uniqueProductCount}" default="{!Cart.Details.uniqueProductCount}"/>
+            <property name="pageSize" type="Integer" label="Page size" description="Number of items to be displayed (min:1 and max:100)" default="10"/>
             <property name="showRemoveItemOption" type="Boolean" label="Show remove item option" default="True"/>
             <property name="showMoreItemsOption" type="Boolean" label="Show more items option" default="True"/>
             <property name="showLineItemTotal" type="Boolean" label="Show line item total" default="True"/>

@@ -1,33 +1,31 @@
 <template>
-    <div style="width: 100%;">
-        <ul>
-            <template for:each={cartItems} for:item="item">
-                <li key={item.id}>
-                    <c-cart-item item={item} currency-code={currencyCode}
-                        show-remove-item-option={showRemoveItemOption}
-                        show-line-item-total={showLineItemTotal}
-                        show-original-price={showOriginalPrice}
-                        show-sku={showSKU}
-                        show-product-image={showProductImage}
-                        product-fields={productFields}
-                        show-price-per-unit={showPricePerUnit}
-                        show-actual-price={showActualPrice}
-                        hide-quantity-selector={hideQuantitySelector}
-                        show-promotions={showPromotions}
-                        ondeletecartitem={handleDeleteCartItem}
-                        onnavigatetoproduct={handleProductNavigation}
-                        map-cart-item={mapCartItem}
-                        is-preview={isPreview}>
-                    </c-cart-item>
-                </li>
-            </template>
-        </ul>
-        <div if:true={needsToShowMore} class="slds-align_absolute-center">
-            <lightning-button
-                onclick={handleShowMoreButton} variant="base"
-                label="Show More" title="Show More"
-                class="slds-var-m-left_x-small">
-            </lightning-button>
-        </div>
+    <ul>
+        <template for:each={cartItemsToShow} for:item="item">
+            <li key={item.id}>
+                <c-cart-item item={item}
+                    labels={labels} is-preview={isPreview}
+                    show-remove-item-option={showRemoveItemOption}
+                    show-line-item-total={showLineItemTotal}
+                    show-original-price={showOriginalPrice}
+                    show-sku={showSKU}
+                    show-product-image={showProductImage}
+                    product-fields={productFields}
+                    show-price-per-unit={showPricePerUnit}
+                    show-actual-price={showActualPrice}
+                    hide-quantity-selector={hideQuantitySelector}
+                    show-promotions={showPromotions}
+                    ondeletecartitem={handleDeleteCartItem}
+                    onnavigatetoproduct={handleProductNavigation}>
+                </c-cart-item>
+                <hr class="separator" />
+            </li>
+        </template>
+    </ul>
+    <div if:true={needsToShowMore} class="slds-align_absolute-center">
+        <lightning-button
+            onclick={handleShowMoreButton} variant="base"
+            label={labels.showMore} title={labels.showMore}
+            class="slds-var-m-left_x-small">
+        </lightning-button>
     </div>
 </template>
