@@ -31,7 +31,7 @@ Apex:
 
 **End User View Screenshot (AdVic_WishlistDisplay and AdVic_Wishlistitem LWC):**
 
-![Screenshot 2024-01-08 at 2 10 45 PM](https://github.com/Bedwards2400/Components-For-Salesforce-Commerce-Cloud/assets/90705679/e8bf0d62-8af6-4232-a64d-3f7088c7e478)
+![Screenshot 2024-01-08 at 2 37 45 PM](https://github.com/Bedwards2400/Components-For-Salesforce-Commerce-Cloud/assets/90705679/2450d33d-bf5e-47d6-bf71-a658d9afb21c)
 
 
 ## **PLP/PDP/Global Pop-Up Component**
