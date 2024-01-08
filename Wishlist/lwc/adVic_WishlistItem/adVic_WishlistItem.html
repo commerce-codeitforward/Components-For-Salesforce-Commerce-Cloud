@@ -1,0 +1,52 @@
+<!--
+ - Created by dillon.loubser on 10/24/23.
+
+ <button data-id={product.id} class="add-to-cart-button" onclick={handleAddToList}>
+                                Add to List
+                                <svg class="button_icon">
+                                    <use xlink:href={listButton}></use>
+                                </svg>
+                            </button>
+
+                            <div if:true={showAddToList}>
+                        <c-ad-vic_-wishlist-pop-up onmodalmessage={onCloseListPopUp} product-id={wishlistProductId}>
+                        </c-ad-vic_-wishlist-pop-up>
+                    </div>
+
+@track showAddToList = false;
+    @track wishlistProductId;
+    listButton = LIGHTNING_ICONS + '/utility-sprite/svg/symbols.svg#list';  // Adjust path as needed
+
+    handleAddToList(event){
+        this.wishlistProductId = event.currentTarget.dataset.id
+        console.log('Wishlist Product Id: ' + this.wishlistProductId);
+        this.showAddToList = true;
+    }
+    onCloseListPopUp(){
+        this.showAddToList = false;
+    }
+
+ -->
+
+<!-- AdVic Wishlist Item -->
+<template>
+    <div class="product-card slds-border_bottom">
+        <div class="product-image-section">
+            <img src={productInfo.thumbnailImage.url} alt={productInfo.thumbnailImage.alternateText} class="product-image"/>
+        </div>
+        <div class="product-details-section">
+            <p><a data-id={productInfo.productId} onclick={navigateToProduct}>{wishlistItemName}</a></p>
+        </div>
+        <div class="product-right-section">
+            <div class="quantity-selector">
+                <p>QTY</p>
+                <button onclick={decreaseQuantity} class="quantity-button">-</button>
+                <input value={quantity} oninput={handleQuantityChange} class="quantity-input"/>
+                <button onclick={increaseQuantity} class="quantity-button">+</button>
+            </div>
+        </div>
+        <div class="product-remove">
+            <lightning-button variant="base" class="slds-m-left_x-small" icon-name="action:close" title={removeLabel} onclick={notifyRemoveItem}></lightning-button>
+        </div>
+    </div>
+</template>
