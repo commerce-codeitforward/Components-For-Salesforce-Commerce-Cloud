@@ -1,0 +1,108 @@
+<template>
+    <h2 class="dxp-text-heading-medium">Credit Card Payment</h2>
+    <div>
+        <div class="cardname-container">
+            <lightning-input
+                label="First Name"
+                value={firstName}
+                onchange={handleFirstNameChange}
+                onblur={handleFirstNameBlur}
+                required></lightning-input>
+            </div>
+            <div>    
+            <lightning-input
+                label="Last Name"
+                value={lastName}
+                onchange={handleLastNameChange}
+                onblur={handleLastNameBlur}
+                required></lightning-input>
+            </div>
+            <div>
+            <lightning-input
+                label="Street Address"
+                value={street}
+                onchange={handleStreetChange}
+                onblur={handleStreetBlur}
+                required></lightning-input>
+            </div>
+            <div>
+            <lightning-input
+                label="City"
+                value={city}
+                onchange={handleCityChange}
+                onblur={handleCityBlur}
+                required></lightning-input>
+            </div>
+            <div>
+            <lightning-select
+                name="state"
+                label="State"
+                value={state}
+                options={stateOptions}
+                onchange={handleStateChange}></lightning-select>
+            </div>
+            <div>
+            <lightning-input
+                label="Zip/Postal Code"
+                value={postalCode}
+                onchange={handlePostalCodeChange}
+                onblur={handlePostalCodeBlur}
+                required></lightning-input>
+        </div>
+        <div class="microflex-container">
+            <div class="slds-form-element microform-layout-item">
+                <label class="slds-form-element__label">
+                <abbr
+                    title="required"
+                    class="slds-required">*</abbr>
+                    Credit Card Number
+                </label>
+                <div class="slds-form-element__control">
+                <div
+                    id="number-container"
+                    class="number-container form-control slds-input"
+                    style="width: 172px"
+                    lwc:dom="manual"
+                    ></div>
+                </div>
+            </div>
+            <div class="slds-form-element microform-layout-item">
+                <label class="slds-form-element__label">
+                    <abbr
+                        title="required"
+                        class="slds-required">*</abbr>
+                        CVV
+                </label>
+                <div class="slds-form-element__control">
+                <div
+                    id="securityCode-container"
+                    class="securityCode-container form-control slds-input"
+                    style="width: 64px"
+                    lwc:dom="manual"
+                ></div>
+                </div>
+            </div>
+        </div>
+        <div class="expiration-container">
+            <lightning-select
+                name="expMonth"
+                label="Exp Month"
+                value={month}
+                options={monthOptions}
+                onchange={handleExpMonthChange}></lightning-select>
+            <lightning-select
+                name="expYear"
+                label="Exp Year"
+                value={year}
+                options={yearOptions}
+                onchange={handleExpYearChange}></lightning-select>
+        </div>
+    </div>
+    <div class="error-messages-container">
+        <ul lwc:if={showCardErrors}>
+            <template for:each={errorMessages} for:item="message">
+                <li key={message}>{message}</li>
+            </template>
+        </ul>
+    </div>
+</template>
