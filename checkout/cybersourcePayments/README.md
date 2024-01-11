@@ -1,6 +1,5 @@
 # Cybersource - B2B / B2C Commerce for LWR
-
-This component uses Cybersource Microform Integration along with the Commerce LWR Place Order process to validate Credit Card information and create Order Payment Summary records. Initially we use Cybersource Microforms to create a Cybersource temporary token. We then use the temporary token to Authorize a payment in Cybersource. In addition, we leverage the 'commerce/checkoutApi' postAuthorizePayment() API to validate the Cybersource Authorization and populate the commercepayments.PostAuthorizationResponse in the CybersourcePaymentGateway. The commerce platform will manage the creation of all the necessary OrderPaymentSummary and AlternativePaymentMethod records. Keep in mind the platform create an AlternativePaymentMethod record instead of a CardPaymentMethod.
+This component uses Cybersource Microform Integration along with the Commerce LWR Place Order process to validate Credit Card information and create Order Payment Summary records. Initially we use Cybersource Microforms to create a Cybersource temporary token. We then use the temporary token to Authorize a payment in Cybersource. In addition, we leverage the 'commerce/checkoutApi' postAuthorizePayment() API to validate the Cybersource Authorization and populate the commercepayments.PostAuthorizationResponse in the CybersourcePaymentGateway. The commerce platform will manage the creation of all the necessary OrderPaymentSummary and AlternativePaymentMethod records. Keep in mind the platform will create an AlternativePaymentMethod record instead of a CardPaymentMethod record.
 
 Install instructions:
 1. Deploy the code.
@@ -9,7 +8,7 @@ Install instructions:
   -  CybersourcePaymentAdapter
 3. Create a Cybersource Merchant Account with Cybersource
 4. Create a Cybersource Security Key.
-  - If you have a Cybersource Security Key and knkow the Api Key and API Shared Secret values, you can use those. Otherwise you will need to create one.
+  - If you have a Cybersource Security Key and know the Api Key and API Shared Secret values, you can use those. Otherwise you will need to create one.
   - From the Cybersource Dashboard click "+ Generate new key"
   - Select the REST-Shared Secret option
   - Leave all other options unselected
@@ -28,7 +27,7 @@ Install instructions:
   - Name:	Cybersource
   - URL:	https://apitest.cybersource.com
   - Certificate: Leave Blank
-  - Identity Type: Named Credential
+  - Identity Type: Named Principal
   - Authentication Protocol: Password Authentication
   - Username:	YOUR_CYBERSOURCE_ACCOUNT_USERNAME
   - Password:	YOUR_CYBERSOURCE_ACCOUNT_PASSWORD
@@ -65,7 +64,7 @@ Install instructions:
   - Check "Cybersource Payment Gateway"
   - Click "Next"
   - Click "Confirm"
-9.Create Remote Site
+9. Create Remote Site
   - In Salesforce Setup click "Remote Site Settings"
   - Click "New Remote Site"
   - Complete the following fields:
@@ -109,4 +108,3 @@ Install instructions:
 
   Custom Metadata for State and Country Values.
   Cybersource requires State and Country ISO codes as part of the Credit Card Address. These are managed with Country_Code__mtd and State_Code__mdt values. This repo contains Country and State values for the United States. Additional values can be added using these Custom Metadata Types.
-

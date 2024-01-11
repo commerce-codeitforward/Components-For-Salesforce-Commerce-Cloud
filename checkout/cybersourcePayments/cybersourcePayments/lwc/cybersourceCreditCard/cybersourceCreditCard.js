@@ -236,7 +236,7 @@ export default class CybersourceCreditCard extends NavigationMixin(useCheckoutCo
     }
 
     stageAction(checkoutStage) {
-        debugger;
+        
         console.log('checkoutStage: ' + checkoutStage);
         switch (checkoutStage) {
             case 'CHECK_VALIDITY_UPDATE':
@@ -317,7 +317,7 @@ export default class CybersourceCreditCard extends NavigationMixin(useCheckoutCo
      * @type {CheckoutMode}
      */
     get checkoutMode() {
-        debugger;
+        
         return this._checkoutMode;
     }
 
@@ -336,7 +336,6 @@ export default class CybersourceCreditCard extends NavigationMixin(useCheckoutCo
 
     checkValidity() {
         let isValid = true;
-        
         isValid = isValid && (
             this.firstName.length > 0 
             && this.lastName.length > 0
@@ -356,7 +355,6 @@ export default class CybersourceCreditCard extends NavigationMixin(useCheckoutCo
     }
 
     reportValidity() {
-        debugger;
         this.errorMessages = [];
         let isValid = true;
         let isShippingValid = this.validateShippingAddress();
@@ -371,7 +369,6 @@ export default class CybersourceCreditCard extends NavigationMixin(useCheckoutCo
     }
 
     async authPayment(){
-        debugger;
         const stateCode = this.state.split(':')[0];
         const countryCode = this.state.split(':')[1];
         const billingAddress = {
