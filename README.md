@@ -19,17 +19,23 @@ https://github.com/forcedotcom/commerce-on-lightning-components/tree/release
 
 
 ### List of Sections
-The following components are the current components available in this repository.
+
+| Sections  | Experience Cloud Page | 
+| ------------- | ------------- | 
+| [Checkout](/checkout/)  | Checkout  | 
+| [Cart](/cart/)  | Cart  | 
+| [Account](/account/)  | Account  | 
+
+The following components are some of the highlights to take a look at in this repository.
 
 | Component  | Page | Status | Demo Video |
 | ------------- | ------------- | ------------- | ------------- |
-| [Checkout](/checkout/)  | Checkout  | Ready | - |
 | [Cart Items](/cart/cartItems/)  | Cart  | Ready | - |
 | [Cart Summary](/cart/cartSummary/)  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
 | [Shipping Method](/checkout/shippingMethod/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
-| [Shipping Instructions](/checkout/shippingInstructions/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 | [Simple Purchase Order](/checkout/simplePurchaseOrder/)  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
-| [Account](/account/)  | Account  | Ready | - |
+| [CyberSource Payments](/checkout/cybersourcePayments/)  | Checkout  | Ready | - |
+| [Checkout Shipping Addresses](/checkout/shippingAddress/)  | Checkout  | Ready | https://youtu.be/u2UXJ1HLZeQ |
 
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!

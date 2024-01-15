@@ -1,0 +1,78 @@
+<template>
+    <div if:false={isSummary} class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-p-around_small">
+            <fieldset class="slds-form-element">
+                <legend class="slds-form-element__legend slds-form-element__label">Select a Shipping Address</legend>
+                <div class="slds-form-element__control visual-picker-flex">
+                    <template for:each={shippingAddresses} for:item="sAddress">
+                        <div class="slds-visual-picker slds-visual-picker_medium" key={sAddress.id}>
+                            <input type="radio" id={sAddress.id} value={sAddress.id} name="shipping-address" onchange={handleAddressPick} checked={sAddress.selected} disabled={isDisabled}/>
+                            <label for={sAddress.id}>
+                                <div class="card-size">
+                                    <span class="slds-visual-picker__figure slds-visual-picker__text card-size card-padding">
+                                        <span style="text-align: left;">
+                                            <span class="slds-text-heading_small" style="padding-bottom: 8px;">{sAddress.name}</span>
+                                            <lightning-formatted-address 
+                                            street={sAddress.address.street}
+                                            city={sAddress.address.city}
+                                            country={sAddress.address.country}
+                                            province={sAddress.address.state}
+                                            postal-code={sAddress.address.postalCode} 
+                                            disabled
+                                            ></lightning-formatted-address>
+                                        </span>
+                                    </span>
+                                    <span class="slds-icon_container slds-visual-picker__text-check">
+                                        <svg class="slds-icon slds-icon-text-check slds-icon_x-small" aria-hidden="true">
+                                        </svg>
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+                    </template>
+                </div>
+            </fieldset>
+            <div if:false={isNewAddress} class="slds-m-top_small">
+                <lightning-button variant="brand" label="New Address" title="New Shipping Address"
+                    onclick={createNewAddress} class="slds-m-top_small"></lightning-button>
+            </div>
+            <label if:true={showError} class="slds-text-color_error slds-m-top_small">
+                Error: {error}
+            </label>
+        </div>
+        <template if:true={isNewAddress}>
+            <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                <lightning-input type="text" label="Location Name" required onchange={handleNameChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                <lightning-input type="text" label="First Name" required onchange={handleFirstNameChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                <lightning-input type="text" label="Last Name" required onchange={handleLastNameChange}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                <lightning-input-address address-label={newAddressLabel} street-label="Street" city-label="City"
+                    country-label="Country" province-label="State/Province"
+                    postal-code-label="Zip Code" country-options={countryOptions} province-options={stateOptions}
+                    required onchange={handleAddressChange}></lightning-input-address>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                <lightning-button variant="brand" label="Save Address" title="Save Address" onclick={saveAddress}
+                    class="slds-m-top_small"></lightning-button>
+                <lightning-button variant="base" label="Close" title="Close" onclick={handleNewAddressClose} class="slds-m-left_x-small"></lightning-button>
+            </div>
+        </template>
+    </div>
+    <div if:true={isSummary}>
+        <div class="slds-col slds-size_1-of-3 slds-p-around_small">
+            <lightning-card title={shippingAddress.name} class="slds-m-bottom_small">
+                <div class="slds-p-horizontal_small">
+                    <template if:true={shippingAddress.firstName}>{shippingAddress.firstName} {shippingAddress.lastName}<br /></template>
+                    {shippingAddress.address.street}<br />
+                    {shippingAddress.address.city}, {shippingAddress.address.state}
+                    {shippingAddress.address.postalCode}, {shippingAddress.address.country}<br />
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+</template>

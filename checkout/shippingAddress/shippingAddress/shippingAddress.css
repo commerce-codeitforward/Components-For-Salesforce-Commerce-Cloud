@@ -1,0 +1,28 @@
+.card-size {
+    width: 260px;
+    height: 140px;
+  }
+  
+  .card-padding {
+    padding: 16px;
+  }
+  
+  .body{
+    padding: 16px;
+  }
+  
+  .full-width{
+    width: 100%;
+  }
+  
+  .visual-picker-flex{
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 16px; 
+    justify-content: flex-start; 
+    width: 100%;
+  }
+  
+  .slds-visual-picker + .slds-visual-picker {
+    margin-left: 0rem;
+  }
