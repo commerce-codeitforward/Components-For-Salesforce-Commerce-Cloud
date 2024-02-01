@@ -38,7 +38,7 @@ Apex:
 
 The Pop-Up component can be leveraged throughout your org. The most obvious places are the PLP and PDP (Anywhere you typically add products to your cart).
 
-**Note:** The screenshots below show the Pop-Up from teh End User perspective when the User clicks "Add to List" as opposed to "Add to Cart" from a Product List Page (PLP). The PLP details are not shown due to client-sensitivity.
+**Note:** The screenshots below show the Pop-Up from the End User perspective when the User clicks "Add to List" as opposed to "Add to Cart" from a Product List Page (PLP). The PLP details are not shown due to client-sensitivity.
 
 **User clicks a button that calls the Pop Up method:**
 
