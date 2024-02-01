@@ -60,17 +60,7 @@ export default class AdVic_WishlistPopUp extends LightningElement {
     listNameChange(evt){
         this.wishListName = evt.target.value;
     }
-
-    /**@wire(getWishListSummaries, {communityId: communityId, effectiveAccountId: '$effectiveAccountId', includeDisplayedList: true})
-     wiredWishListSummaries(result){
-     console.log('wiredWishListSummaries', result);
-     if(result.data){
-     this.wishListCount = result.data.wishlistCount;
-     this.wiredWishListSummaries = result.data.summaries;
-     }
-
-     }**/
-
+    
     connectedCallback() {
         console.log('ProductId: ' + this.productId);
         this.isLoading = true;
@@ -129,17 +119,6 @@ export default class AdVic_WishlistPopUp extends LightningElement {
     }
 
     handleAdd(event){
-        /**if(this.cartItemId){
-            //this.dispatchEvent(new CustomEvent('modalmessage',{detail: { action: 'add', wishlistId: this.selectedWishListId, wishListName: this.wishListName, cartItemId: this.cartItemId} }));
-        }
-        else{
-            this.dispatchEvent(new CustomEvent('modalmessage',{
-                detail: {
-                    action: 'addAll',
-                    wishlistId: this.selectedWishListId?this.selectedWishListId:'',
-                    wishListName: this.wishListName}
-            }));
-        }**/
         if(this.selectedWishListId){
             this.addToSelectedWishlist();
         }
