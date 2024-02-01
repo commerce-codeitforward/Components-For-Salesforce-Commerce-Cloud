@@ -2,14 +2,10 @@
  - Created by dillon.loubser on 10/26/23.
  -->
 
-<!-- AdVic Wishlist Pop Up -->
 <template>
     <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
         <div class="slds-modal__container">
             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
-                <!--                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">-->
-                <!--                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>-->
-                <!--                </svg>-->
                 <lightning-icon icon-name="utility:close" variant="inverse" onclick={handleClose}></lightning-icon>
                 <span class="slds-assistive-text">{labels.Cancel}</span>
             </button>
@@ -82,15 +78,3 @@
     </section>
     <div class="slds-backdrop slds-backdrop_open"></div>
 </template>
-
-<!--<div if:true={showListPopUp}>
-                <c-ad-vic_-wishlist-pop-up onmodalmessage={onCloseListPopUp} product-id={recordId}>
-                </c-ad-vic_-wishlist-pop-up>
-            </div>
-
-onCloseListPopUp(event){
-        this.showListPopUp = false;
-    }
-role="presentation"
-
-            -->
