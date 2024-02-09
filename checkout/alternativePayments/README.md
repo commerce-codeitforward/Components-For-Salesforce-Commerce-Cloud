@@ -1,4 +1,4 @@
-# Shipping Instructions
+# Alternative Payments
 
 This component shows the delivery methods that are available to the user during checkout. 
 This component utilize the commerce cloud API to make updates to the checkout session (which can be found here -- https://developer.salesforce.com/docs/atlas.en-us.242.0.chatterapi.meta/chatterapi/connect_resources_commerce_webstore_checkouts.htm) In order to make this work you will need to ensure you have a remote site setup for your community url. 
