@@ -15,7 +15,7 @@ jobs:
         env:
           SF_AUTH_URL: ${{ secrets.SF_AUTH_URL_CI1 }}
         run: |
-          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --set-default --sfdx-url-stdin
+          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --set-default --sfdx-url-stdin -
 
       - name: 'Deployment (validation only)'
         run: |
