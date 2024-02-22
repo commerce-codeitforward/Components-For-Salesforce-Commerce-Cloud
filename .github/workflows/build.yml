@@ -11,5 +11,8 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli@latest
 
-      - name: 'Test Salesforce CLI'
-        run: sf --version
+      - name: 'Authenticate on CI1'
+        env:
+          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL_CI1 }}
+        run: |
+          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --sfdx-url-stdin
