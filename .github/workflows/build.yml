@@ -1,0 +1,22 @@
+name: Continuous Integration
+on: push
+
+jobs:
+  base-scratch-org-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
+
+      - name: 'Authenticate on CI1'
+        env:
+          SF_AUTH_URL: ${{ secrets.SF_AUTH_URL_CI1 }}
+        run: |
+          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --set-default --sfdx-url-stdin -
+
+      - name: 'Deployment (validation only)'
+        run: |
+          sf project deploy start --dry-run --ignore-conflicts --wait 30

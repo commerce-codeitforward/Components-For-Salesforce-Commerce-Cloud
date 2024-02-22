@@ -1,0 +1,33 @@
+{
+    "packageDirectories": [
+      {
+        "path": "account",
+        "default": false
+      },
+      {
+        "path": "cart",
+        "default": false
+      },
+      {
+        "path": "checkout",
+        "default": false
+      },
+      {
+        "path": "common",
+        "default": false
+      },
+      {
+        "path": "integrations",
+        "default": false
+      },
+      {
+        "path": "unpackaged",
+        "default": true
+      }
+    ],
+    "name": "Commerce Code it Forward (components)",
+    "namespace": "",
+    "sfdcLoginUrl": "https://login.salesforce.com",
+    "sourceApiVersion": "60.0"
+  }
+  
