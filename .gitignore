@@ -4,3 +4,5 @@
 # IDEs
 .idea
 .vscode
+
+unpackaged/
