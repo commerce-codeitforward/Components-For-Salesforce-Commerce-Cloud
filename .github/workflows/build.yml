@@ -1,4 +1,4 @@
-name: Salesforce Code Analyzer Workflow
+name: Continuous Integration
 on: push
 
 jobs:
