@@ -15,4 +15,8 @@ jobs:
         env:
           SF_AUTH_URL: ${{ secrets.SF_AUTH_URL_CI1 }}
         run: |
-          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --sfdx-url-stdin
+          echo "${{ env.SF_AUTH_URL }}" | sf org login sfdx-url --sfdx-url-stdin --set-default
+
+      - name: 'Deployment (validation only)'
+        run: |
+          sf project deploy start --dry-run --ignore-conflicts --wait 30
