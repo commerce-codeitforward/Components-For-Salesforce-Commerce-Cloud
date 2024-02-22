@@ -1,0 +1,15 @@
+name: Salesforce Code Analyzer Workflow
+on: push
+
+jobs:
+  base-scratch-org-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out files
+        uses: actions/checkout@v4
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli@latest
+
+      - name: 'Test Salesforce CLI'
+        run: sf --version
