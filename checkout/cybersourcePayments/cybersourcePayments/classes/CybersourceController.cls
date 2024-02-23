@@ -142,7 +142,7 @@ public with sharing class CybersourceController {
         return req;
     }
     
-    //Generates the (host date (request-target) digest v-c-merchant-id) string
+    //Generates the (host date request-target digest v-c-merchant-id) string
     private static String generateSignatureHeaders(String reqType, String reqTarget, String digestString) {
         String headerFields = '';
         
@@ -154,8 +154,8 @@ public with sharing class CybersourceController {
             headerFields += 'date: ' + dateString + '\n';
         }
         
-        //Add (request-target)
-        headerFields += ('(request-target): ' + reqType + ' ' + reqTarget + '\n');
+        //Add request-target
+        headerFields += ('request-target: ' + reqType + ' ' + reqTarget + '\n');
         
         //Add digest (for POST requests only)
         if(reqType == 'post') {
@@ -188,7 +188,7 @@ public with sharing class CybersourceController {
             signatureString += ' date';
         }
         
-        signatureString += ' (request-target)';
+        signatureString += ' request-target';
 
         //Add in 'digest' for POST requests        
         if(reqType == 'post') {
@@ -290,7 +290,7 @@ public with sharing class CybersourceController {
 		String digest = generateAuthorizationDigest(req);
 		req.setHeader('Digest', digest);
 		req.setHeader('v-c-merchant-id', merchantId);
-		req.setHeader('Signature', 'keyid="'+apiKey+'", algorithm="HmacSHA256", headers="host date (request-target) digest v-c-merchant-id", signature="'+generateAuthorizationSignature(req, digest, dateString, target)+'"');
+		req.setHeader('Signature', 'keyid="'+apiKey+'", algorithm="HmacSHA256", headers="host date request-target digest v-c-merchant-id", signature="'+generateAuthorizationSignature(req, digest, dateString, target)+'"');
         System.debug('setAuthorizationHeaders exit');
     }
 
@@ -304,7 +304,7 @@ public with sharing class CybersourceController {
 	private static String generateAuthorizationSignature(HttpRequest req, String digest, String dateString, String target) {
 		String headerFields = 'host: '+apiUrl+'\n';
 		headerFields += 'date: '+dateString+'\n';
-		headerFields += '(request-target): post '+target+'\n';
+		headerFields += 'request-target: post '+target+'\n';
 		headerFields += 'digest: '+digest+'\n';
 		headerFields += 'v-c-merchant-id: '+merchantId;
 		Blob sigBytes = Blob.valueOf(headerFields);
