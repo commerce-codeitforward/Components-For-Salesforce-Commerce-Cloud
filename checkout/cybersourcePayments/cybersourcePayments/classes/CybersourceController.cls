@@ -12,7 +12,6 @@ public with sharing class CybersourceController {
     private static String dateString = '';
     private static String cardinalCommerceUrl = '';
 
-
     // This is currently pulling the State Names and ISO Codes from the State / Country Picklist
     // A better way to do this may be to use Custom Metadata
     @AuraEnabled
