@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>StoreStateCode__c</members>
+        <members>StoreCountryCode__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>AddressOption</members>
+        <members>AddressOptionTest</members>
+        <members>StoreCountryStateCodes</members>
+        <members>StoreCountryStateCodesTest</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>addressForm</members>
+        <members>modalCheckoutAddressForm</members>
+        <members>shippingAddress</members>
+        <name>LightningComponentBundle</name>
+    </types>
+    <version>59.0</version>
+</Package>

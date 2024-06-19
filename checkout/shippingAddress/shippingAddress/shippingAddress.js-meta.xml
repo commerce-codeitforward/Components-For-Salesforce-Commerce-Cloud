@@ -10,11 +10,30 @@
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">
             <property
+                name="filterCountries"
+                type="Boolean"
+                label="Apply Country Filter"
+                description="Filter Country options when creating a new addresss"
+            />
+            <property
+                name="filterRegions"
+                type="Boolean"
+                label="Apply State Filter"
+                description="Filter State/Province options when creating a new addresss"
+            />
+            <property
                 name="noShippingMessage"
                 type="String"
                 label="No Shipping Message"
                 description="Message to show when the order doesn't require shipping"
                 default="Your order doesn't require shipping, please move on to the next step."
+            />
+            <property
+                name="checkoutCart"
+                type="String"
+                label="Cart Binding Expression"
+                description="Access cart data. {!Checkout.CartDetails} is the fixed text for this expression. Do not change or delete."
+                default="{!Checkout.CartDetails}"
             />
         </targetConfig>
     </targetConfigs>
