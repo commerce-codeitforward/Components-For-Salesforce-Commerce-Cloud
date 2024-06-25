@@ -1,8 +1,7 @@
 # Shipping Address
 
 This component shows shipping addresses in the checkout screen and utilizes the latest and greatest of the checkout standards of commerce cloud. 
-This component provides an exmaple of checkout api usage for adding and selecting shipping addresses. Additionally, 
-this component provides an example implementation for limiting country and state/province picklist values for address editing and creation. 
+While this component uses the latest of the checkout standards, this component is only a mock component. Meaning this component is currently build to show mock data and not real addresses from your account or handle any of those use cases. Please keep this in mind when using this component! 
 
 ### Installation Steps
 1. Enable State and Country/Territory Picklists in the target org.

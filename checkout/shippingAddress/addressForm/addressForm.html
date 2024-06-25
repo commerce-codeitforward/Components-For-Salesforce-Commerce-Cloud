@@ -1,0 +1,111 @@
+<template>
+    <div class="slds-form-element">
+        <div class="slds-form-element__control">
+            <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input 
+                        lwc:ref="firstName" 
+                        type="text" 
+                        label="First Name" 
+                        value={address.firstName} 
+                        oncommit={handleCommit}
+                        onfocusout={handleOnFocusOut}
+                        required={required}
+                        disabled={inputDisabled}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+                    <lightning-input 
+                        lwc:ref="lastName" 
+                        type="text" 
+                        label="Last Name" 
+                        value={address.lastName} 
+                        oncommit={handleCommit} 
+                        onfocusout={handleOnFocusOut}
+                        required={required}
+                        disabled={inputDisabled}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                    <lightning-combobox
+                        lwc:ref="country" 
+                        name="country"
+                        label="Country"
+                        value={address.country}
+                        required={required}
+                        options={countryOptions} 
+                        onfocusout={handleOnFocusOut}
+                        onchange={handleCountryChange}
+                        disabled={inputDisabled}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                    <lightning-textarea 
+                        lwc:ref="street" 
+                        name="street"
+                        label="Street" 
+                        value={address.street} 
+                        onchange={handleStreetChange} 
+                        onfocusout={handleOnFocusOut}
+                        required={required}
+                        disabled={inputDisabled}>
+                    </lightning-textarea>
+                </div>
+                <div class="slds-col slds-size_2-of-3 slds-p-horizontal_small">
+                    <lightning-input 
+                        lwc:ref="city"
+                        type="text" 
+                        label="City" 
+                        value={address.city} 
+                        oncommit={handleCommit} 
+                        onfocusout={handleOnFocusOut}
+                        required={required}
+                        disabled={inputDisabled}>
+                    </lightning-input>
+                </div>
+                <div class="slds-col slds-size_1-of-3 slds-p-horizontal_small">
+                    <lightning-combobox
+                        lwc:ref="region" 
+                        name="region"
+                        label="State/Province"
+                        value={address.region}
+                        placeholder="--None--"
+                        required={required}
+                        options={regionOptions} 
+                        onfocusout={handleOnFocusOut}
+                        onchange={handleRegionChange}
+                        disabled={inputDisabled}>
+                    </lightning-combobox>
+                </div>
+                <div class="slds-col slds-size_1-of-1 slds-p-horizontal_small">
+                    <lightning-input 
+                        lwc:ref="postalCode" 
+                        type="text" 
+                        label="Zip Code" 
+                        value={address.postalCode} 
+                        oncommit={handleCommit} 
+                        onfocusout={handleOnFocusOut}
+                        required={required}
+                        disabled={inputDisabled}>
+                    </lightning-input>
+                </div>
+                <div if:false={hideDefaultCheckbox}>
+                    <div class="slds-checkbox slds-col slds-size_1-of-1 slds-p-horizontal_medium">
+                        <input 
+                            lwc:ref="defaultAddressCheckbox" 
+                            type="checkbox" 
+                            name="default-address-checkbox" 
+                            id="default-address-checkbox" 
+                            value="default-address-checkbox" 
+                            disabled={inputDisabled}
+                            onclick={handleDefaultClick}/>
+                        <label class="slds-checkbox__label" for="default-address-checkbox">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-form-element__label">Make this my default address</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</template>

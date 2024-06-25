@@ -1,0 +1,18 @@
+<template>
+    <lightning-modal-header label={title}>
+    </lightning-modal-header>
+    <lightning-modal-body>
+        <c-address-form
+            address={address} 
+            country-options={countryOptions}
+            all-region-options={allRegionOptions}
+            required="true"
+            onfocusout={handleAddressOnFocusOutEvent}
+        >
+        </c-address-form>
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button class="footer-button" label="Cancel" onclick={handleCancelClick}></lightning-button>
+        <lightning-button class="footer-button" label="Save Address" disabled={saveDisabled} onclick={handleSaveClick}></lightning-button>      
+    </lightning-modal-footer>
+</template>
