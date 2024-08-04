@@ -25,12 +25,15 @@ https://github.com/forcedotcom/commerce-on-lightning-components/tree/release
 | [Checkout](/checkout/)  | Checkout  | 
 | [Cart](/cart/)  | Cart  | 
 | [Account](/account/)  | Account  | 
+| [Product](/product/)  | Product  | 
+| [Extensions](/extensions/)  | Extensions  | 
 
 The following components are some of the highlights to take a look at in this repository.
 
 | Component  | Page | Status | Demo Video |
 | ------------- | ------------- | ------------- | ------------- |
 | [Cart Items](/cart/cartItems/)  | Cart  | Ready | - |
+| [Add To Cart](/product/addToCart/)  | Product  | Ready | - |
 | [Cart Summary](/cart/cartSummary/)  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
 | [Shipping Method](/checkout/shippingMethod/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 | [Simple Purchase Order](/checkout/simplePurchaseOrder/)  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
