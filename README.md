@@ -33,7 +33,7 @@ The following components are some of the highlights to take a look at in this re
 | Component  | Page | Status | Demo Video |
 | ------------- | ------------- | ------------- | ------------- |
 | [Cart Items](/cart/cartItems/)  | Cart  | Ready | - |
-| [Add To Cart](/product/addToCart/)  | Product  | Ready | - |
+| [Add To Cart](/product/addToCart/)  | Product  | Ready | https://youtu.be/cw0mQsYHDX8 |
 | [Cart Summary](/cart/cartSummary/)  | Cart, Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=427 |
 | [Shipping Method](/checkout/shippingMethod/)  | Checkout  | Ready | https://youtu.be/iVCZ5ZUEy9U?t=666 |
 | [Simple Purchase Order](/checkout/simplePurchaseOrder/)  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
