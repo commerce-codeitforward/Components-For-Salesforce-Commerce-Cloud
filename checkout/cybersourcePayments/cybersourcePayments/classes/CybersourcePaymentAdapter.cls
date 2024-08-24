@@ -140,11 +140,12 @@ global with sharing class CybersourcePaymentAdapter implements commercepayments.
 		req.setHeader('Date', dateString);
 		
 		req.setHeader('v-c-merchant-id', merchantId);
-		req.setHeader('Signature', 'keyid="'+apiKey+'", algorithm="HmacSHA256", headers="host request-target v-c-merchant-id", signature="'+ generateTransactionSignature(req, target)+'"');
+		req.setHeader('Signature', 'keyid="'+apiKey+'", algorithm="HmacSHA256", headers="host date request-target v-c-merchant-id", signature="'+ generateTransactionSignature(req, dateString, target)+'"');
 	}
 
-	private static String generateTransactionSignature(HttpRequest req, String target) {
+	private static String generateTransactionSignature(HttpRequest req, String dateString, String target) {
 		String headerFields = 'host: '+ apiUrl + '\n';
+		headerFields += 'date: '+dateString+'\n';
 		headerFields += 'request-target: get ' + target + '\n';
 		headerFields += 'v-c-merchant-id: ' + merchantId;
 		Blob sigBytes = Blob.valueOf(headerFields);
