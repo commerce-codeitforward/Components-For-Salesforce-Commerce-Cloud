@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Document Type</label>
+    <required>true</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SalesOrder</fullName>
+                <default>true</default>
+                <label>Avalara - SalesOrder</label>
+            </value>
+            <value>
+                <fullName>SalesInvoice</fullName>
+                <default>false</default>
+                <label>Avalara - SalesInvoice</label>
+            </value>
+            <value>
+                <fullName>PurchaseOrder</fullName>
+                <default>false</default>
+                <label>Avalara - PurchaseOrder</label>
+            </value>
+            <value>
+                <fullName>PurchaseInvoice</fullName>
+                <default>false</default>
+                <label>Avalara - PurchaseInvoice</label>
+            </value>
+            <value>
+                <fullName>Avalara - ReturnOrder</fullName>
+                <default>false</default>
+                <label>Avalara - ReturnOrder</label>
+            </value>
+            <value>
+                <fullName>Avalara - ReturnInvoice</fullName>
+                <default>false</default>
+                <label>Avalara - ReturnInvoice</label>
+            </value>
+            <value>
+                <fullName>InventoryTransferOrder</fullName>
+                <default>false</default>
+                <label>Avalara - InventoryTransferOrder</label>
+            </value>
+            <value>
+                <fullName>InventoryTransferInvoice</fullName>
+                <default>false</default>
+                <label>Avalara - InventoryTransferInvoice</label>
+            </value>
+            <value>
+                <fullName>QUOTATION</fullName>
+                <default>false</default>
+                <label>Vertex - Quotation</label>
+            </value>
+            <value>
+                <fullName>INVOICE</fullName>
+                <default>false</default>
+                <label>Vertex - Invoice</label>
+            </value>
+            <value>
+                <fullName>DISTRIBUTE_TAX</fullName>
+                <default>false</default>
+                <label>Vertex - Distribute Tax</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -39,6 +39,7 @@ The following components are some of the highlights to take a look at in this re
 | [Simple Purchase Order](/checkout/simplePurchaseOrder/)  | Checkout  | Ready | https://youtu.be/nBPWHMgfOq0 |
 | [CyberSource Payments](/checkout/cybersourcePayments/)  | Checkout  | Ready | - |
 | [Checkout Shipping Addresses](/checkout/shippingAddress/)  | Checkout  | Ready | https://youtu.be/u2UXJ1HLZeQ |
+| [UPS Extension](/extensions/shipping/UPS%20Shipping/)  | Extension  | Ready | - |
 
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!

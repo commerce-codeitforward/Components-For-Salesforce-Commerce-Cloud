@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Provider__c</fullName>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Shipping Provider</label>
+    <referenceTo>Shipping_Provider__mdt</referenceTo>
+    <relationshipLabel>Internal Shipping Rates</relationshipLabel>
+    <relationshipName>Internal_Shipping_Rates</relationshipName>
+    <required>false</required>
+    <type>MetadataRelationship</type>
+    <unique>false</unique>
+</CustomField>

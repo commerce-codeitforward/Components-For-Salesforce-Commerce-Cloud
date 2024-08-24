@@ -8,4 +8,5 @@ The following components are the current components available in this section of
 
 | Component  | Type | Description | Demo Video |
 | ------------- | ------------- | ------------- |
-| CartCalc_DigitalShipping  | Domain Cart Calculator | This calculator extensions can be used in situations where you want to have a checkout without shipping charges.  | https://youtu.be/7rbPajS4iSk | 
+| Digital Shipping  | Domain Cart Calculator | This calculator extensions can be used in situations where you want to have a checkout without shipping charges.  | https://youtu.be/7rbPajS4iSk | 
+| UPS Shipping  | Domain Cart Calculator | This feature connects UPS as a shipping provider including the authentication, extension and orchestrator required.  |  | 
