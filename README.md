@@ -27,6 +27,7 @@ https://github.com/forcedotcom/commerce-on-lightning-components/tree/release
 | [Account](/account/)  | Account  | 
 | [Product](/product/)  | Product  | 
 | [Extensions](/extensions/)  | Extensions  | 
+| [Invocables](/invocables/)  | N/A  | 
 
 The following components are some of the highlights to take a look at in this repository.
 
@@ -40,6 +41,7 @@ The following components are some of the highlights to take a look at in this re
 | [CyberSource Payments](/checkout/cybersourcePayments/)  | Checkout  | Ready | - |
 | [Checkout Shipping Addresses](/checkout/shippingAddress/)  | Checkout  | Ready | https://youtu.be/u2UXJ1HLZeQ |
 | [UPS Extension](/extensions/shipping/UPS%20Shipping/)  | Extension  | Ready | - |
+| [Marketing Cloud Invocable](/invocables/sfmc_orderConfirmation/)  | N/A  | Ready | https://youtu.be/5F5la5DxLqw |
 
 
 If you're interested in contributing, create a branch / pull request and get started! The more we contribute the better this repository is!
