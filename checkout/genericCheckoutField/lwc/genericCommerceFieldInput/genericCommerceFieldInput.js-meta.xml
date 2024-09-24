@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Generic Checkout Field Input Component</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property label="Object API Name" name="objectApiName" type="String" datasource="WebCart,CartDeliveryGroup"/>
+            <property label="Field API Name" name="fieldName" type="String"/>
+            <property label="Field Label Override" name="overrideLabel" type="String" description="Enter a value to override the default Field Label"/>
+            <property label="Is Required" name="isRequired" type="Boolean"/>
+            <property label="Field Error Message" name="fieldErrorMessage" type="String" default="Please provide a valid value for this field."/>
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>
