@@ -1,5 +1,5 @@
 # Generic Sheckout Field - B2B / D2C Commerce for LWR
-This component was designe to allow a User to add a single field on either the WebCart or CartDeliveryGroup objects  to the Commerce LWR Place Order process. 
+This component was designed to allow a User to add a single field from either the WebCart or CartDeliveryGroup objects to the Commerce LWR Place Order process. 
 
 Install instructions:
 1. Deploy the code.
