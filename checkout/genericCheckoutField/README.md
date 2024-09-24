@@ -1,7 +1,9 @@
 # Generic Checkout Field - B2B / D2C Commerce for LWR
 This component was designed to allow a User to add a single field from either the WebCart or CartDeliveryGroup objects to the Commerce LWR Place Order process. 
 
-Install instructions:
+The included unit tests use a custom field "Requested_Delivery_Date__c" on the WebCart object as an example. If you do dnot use that field you will need to modify the unit tests.
+
+# Install instructions:
 1. Deploy the code.
 2. Create a custom field on either the WebCart or CartDeliveryGroup object you wish to display.
 3. Using a Permission set, grant Read / Write access to the custom field you created.
