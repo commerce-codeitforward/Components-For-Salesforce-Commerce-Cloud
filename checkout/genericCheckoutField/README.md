@@ -1,4 +1,4 @@
-# Generic Sheckout Field - B2B / D2C Commerce for LWR
+# Generic Checkout Field - B2B / D2C Commerce for LWR
 This component was designed to allow a User to add a single field from either the WebCart or CartDeliveryGroup objects to the Commerce LWR Place Order process. 
 
 Install instructions:
@@ -7,7 +7,7 @@ Install instructions:
 3. Using a Permission set, grant Read / Write access to the custom field you created.
 4. Open Experience Builder for your Storefront
   - Select the "Checkout" Page from the Page list combo box
-  - From the Components Menu drag and drop the "Generic Checkout Field Input Component" Component into the Section of your choice.
+  - From the Components Menu drag and drop the "Generic Checkout Field Input Component" Component into the Section of your choice (other than Payment).
   - In the Component Properties display complete the following fields:
     - Object API Name: Select the appropriate object
     - Field API Name: Enter the Api Name of the Custom Field to be displayed
