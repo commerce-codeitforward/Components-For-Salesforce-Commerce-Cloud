@@ -3,7 +3,7 @@ This component was designed to allow a User to add a single field from either th
 
 Install instructions:
 1. Deploy the code.
-2. Create a custom field on wither the WebCart or CartDeliveryGroup object you wish to display.
+2. Create a custom field on either the WebCart or CartDeliveryGroup object you wish to display.
 3. Using a Permission set, grant Read / Write access to the custom field you created.
 4. Open Experience Builder for your Storefront
   - Select the "Checkout" Page from the Page list combo box
