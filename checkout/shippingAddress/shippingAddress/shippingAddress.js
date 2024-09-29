@@ -1,7 +1,7 @@
 import { wire, api, track } from "lwc";
 import { 
     CheckoutInformationAdapter,
-    CheckoutComponentBase,
+    useCheckoutComponent,
     createContactPointAddress,
     CheckoutAddressAdapter,
     updateContactPointAddress
@@ -28,7 +28,7 @@ import { WireStatus } from './wireStatus';
 import ModalCheckoutAddressForm from 'c/modalCheckoutAddressForm';
 import { mockedAddressData } from './shippingAddressMock';
 
-export default class ShippingAddress extends CheckoutComponentBase {
+export default class ShippingAddress extends useCheckoutComponent {
     currentCommunityId;
     webstoreId;
     cpaRecordTypeId;

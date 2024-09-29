@@ -1,5 +1,5 @@
 import { LightningElement, api, wire, track } from 'lwc';
-import { CheckoutInformationAdapter, simplePurchaseOrderPayment, CheckoutComponentBase } from 'commerce/checkoutApi';
+import { CheckoutInformationAdapter, simplePurchaseOrderPayment, useCheckoutComponent } from 'commerce/checkoutApi';
 import { NavigationMixin } from "lightning/navigation";
 import { refreshCartSummary } from "commerce/cartApi";
 import communityId from "@salesforce/community/Id";
@@ -19,7 +19,7 @@ const CheckoutStage = {
     PLACE_ORDER: 'PLACE_ORDER'
 };
 
-export default class CheckoutTerms extends NavigationMixin(CheckoutComponentBase) {
+export default class CheckoutTerms extends NavigationMixin(useCheckoutComponent) {
     _checkedByDefault = false;
     checked = false;
 

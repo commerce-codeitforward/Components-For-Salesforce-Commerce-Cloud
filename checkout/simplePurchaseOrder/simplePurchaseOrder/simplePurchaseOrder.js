@@ -1,6 +1,6 @@
 import { wire, api, track } from 'lwc';
 import { NavigationMixin } from "lightning/navigation";
-import { CheckoutInformationAdapter, simplePurchaseOrderPayment, CheckoutComponentBase } from "commerce/checkoutApi";
+import { CheckoutInformationAdapter, simplePurchaseOrderPayment, useCheckoutComponent } from "commerce/checkoutApi";
 import { refreshCartSummary } from "commerce/cartApi";
 
 import MAIN_TEMPLATE from "./simplePurchaseOrder.html";
@@ -15,7 +15,7 @@ const CheckoutStage = {
     PLACE_ORDER: 'PLACE_ORDER'
 };
 
-export default class SimplePurchaseOrder extends NavigationMixin(CheckoutComponentBase){
+export default class SimplePurchaseOrder extends NavigationMixin(useCheckoutComponent){
 
     isLoading = false;
     firstLoad = false;
