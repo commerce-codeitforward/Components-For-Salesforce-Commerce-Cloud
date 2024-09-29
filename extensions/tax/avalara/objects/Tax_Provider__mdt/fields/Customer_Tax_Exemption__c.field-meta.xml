@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Tax_Exemption__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This flag indicates whether there can be customers who are eligible for tax exemption, if yes then customer needs to provide exemption code &amp; entity use code.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Customer Tax Exemption?</label>
+    <type>Checkbox</type>
+</CustomField>

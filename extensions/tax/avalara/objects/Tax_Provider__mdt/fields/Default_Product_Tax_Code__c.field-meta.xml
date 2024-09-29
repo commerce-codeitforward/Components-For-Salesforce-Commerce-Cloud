@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Default_Product_Tax_Code__c</fullName>
+    <description>This field stores default product tax code and it is used when tax codes are sent to a tax calculator provider but a product doesn&apos;t have any  tax code configured.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>This field stores default product tax code and it is used when tax codes are sent to a tax calculator provider but a product doesn&apos;t have any  tax code configured.</inlineHelpText>
+    <label>Default Product Tax Code</label>
+    <length>255</length>
+    <required>false</required>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

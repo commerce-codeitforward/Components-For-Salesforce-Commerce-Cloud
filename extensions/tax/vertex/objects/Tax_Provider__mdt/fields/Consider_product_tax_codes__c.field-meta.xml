@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Consider_product_tax_codes__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This flag indicates whether sending product tax code to the tax provider service or not. If it is set to true make sure every product has a tax code configured otherwise default product tax code will be used.</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <inlineHelpText>This flag indicates whether sending product tax code to the tax provider service or not. If it is set to true make sure every product has a tax code configured otherwise default product tax code will be used.</inlineHelpText>
+    <label>Consider product tax codes?</label>
+    <type>Checkbox</type>
+</CustomField>

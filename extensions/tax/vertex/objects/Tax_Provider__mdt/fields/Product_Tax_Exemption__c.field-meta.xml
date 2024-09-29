@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Tax_Exemption__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This flag indicates whether there can be product(s) which are tax exempted</description>
+    <externalId>false</externalId>
+    <fieldManageability>SubscriberControlled</fieldManageability>
+    <label>Product Tax Exemption?</label>
+    <type>Checkbox</type>
+</CustomField>

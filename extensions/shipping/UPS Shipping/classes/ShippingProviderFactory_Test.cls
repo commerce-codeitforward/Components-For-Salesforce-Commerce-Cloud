@@ -6,7 +6,7 @@ public class ShippingProviderFactory_Test {
     static void testgetShippingProvider(){
         ShippingMetaData metaData1 = createShippingMetaData('InternalShippingProvider');
         Test.startTest();
-        ShippingProvider provider1 = ShippingProviderFactory.getShippingProvider(metaData1);
+        ShippingProvider provide = ShippingProviderFactory.getShippingProvider(metaData1);
         Test.stopTest();
     }
     
