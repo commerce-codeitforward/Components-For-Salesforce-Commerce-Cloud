@@ -1,0 +1,109 @@
+<template>
+  <div>
+    <template if:true={isPreview}>
+      <div class="slds-text-align_center slds-text-heading_large">Einstein Recommendations Preview Mode</div>
+    </template>
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+    </template>
+    <template if:true={showProducts}>
+      <div class="slds-align_absolute-center slds-p-around_small">
+        <h3 class="slds-text-heading_large">{headerText}</h3>
+      </div>
+      <div class="productCarousel">
+        <div
+          class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-grid slds-gutters slds-grid--vertical-align-center"
+        >
+          <div class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-col slds-size_1-of-12 slds-clearfix">
+            <template if:true={hasNextPage}>
+              <button
+                class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-float_right"
+                style="background-color: transparent; border: none"
+                type="button"
+                data-prev=""
+                tabindex="0"
+                onclick={handlePrevious}
+              >
+                <lightning-icon
+                  class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-icon-utility-chevronleft slds-icon_container"
+                  icon-name="utility:chevronleft"
+                  title="Previous"
+                  variant="inverse"
+                  ><span part="boundary"><span class="slds-assistive-text">Previous</span></span></lightning-icon
+                >
+              </button>
+            </template>
+          </div>
+          <div class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-col slds-size_10-of-12">
+            <div
+              class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-grid carousel-container js-card-container"
+            >
+              <template for:each={products} for:item="product">
+                <div
+                  key={product.id}
+                  class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi carousel-card-container"
+                >
+                  <div class="slds-col card-container">
+                    <lightning-card>
+                      <a>
+                        <img
+                          class="productImage"
+                          data-pid={product.id}
+                          onclick={handleClickProduct}
+                          alter
+                          src={product.defaultImage.url}
+                        />
+                      </a>
+                      <a
+                        ><div
+                          class="tooltip slds-p-horizontal_small"
+                          data-pid={product.id}
+                          onclick={handleClickProduct}
+                        >
+                          {product.shortName}<span class="tooltiptext">{product.name}</span>
+                        </div></a
+                      >
+                      <p class="slds-text-align_center">
+                        <b>{currencySymbol}{product.prices.listPrice}</b>
+                      </p>
+                      <div class="slds-align_absolute-center">
+                        <button
+                          class="button slds-button slds-button_neutral slds-button_outline-brand"
+                          data-pid={product.id}
+                          data-loading="false"
+                          onclick={handleAddItemToCart}
+                        >
+                          <!-- Add to Cart -->
+                          <span class="button__text">Add to Cart</span>
+                        </button>
+                      </div>
+                    </lightning-card>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+          <div class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-col slds-size_1-of-12 slds-clearfix">
+            <template if:true={hasNextPage}>
+              <button
+                class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-float_left"
+                style="background-color: transparent; border: none"
+                type="button"
+                data-next=""
+                tabindex="0"
+                onclick={handleNext}
+              >
+                <lightning-icon
+                  class="b2c_lite_commerce-noWrapCarouselUi_noWrapCarouselUi slds-icon-utility-chevronright slds-icon_container"
+                  icon-name="utility:chevronright"
+                  title="Next"
+                  ><span part="boundary"><span class="slds-assistive-text">Next</span></span></lightning-icon
+                >
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+</template>

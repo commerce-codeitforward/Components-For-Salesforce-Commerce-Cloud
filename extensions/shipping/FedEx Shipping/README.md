@@ -43,20 +43,20 @@ There are various points where this implementation can be extended to achieve pr
 
 ### FedEx shipping methods with rates  ### 
 
-![image](https://github.com/rajapatnaik/fedex-salesforce-b2b-lightning/assets/37152379/14772687-321d-4979-ac0c-bd172f359afb)
+![image](/extensions/shipping/FedEx%20Shipping/docs/337754473-14772687-321d-4979-ac0c-bd172f359afb.png)
 
 
 ### FedEx shipping methods & rates combined with internal flat rates ### 
 
-![image](https://github.com/rajapatnaik/fedex-salesforce-b2b-lightning/assets/37152379/70b82cb0-6345-4901-ae58-035301d8d141)
+![image](/extensions/shipping/FedEx%20Shipping/docs/337755146-70b82cb0-6345-4901-ae58-035301d8d141.png)
 
 
 
 ## Documentation ##
 For details , docs can be found here (Use "Shipping Integration (using OAuth)" as a starting/parent doc): 
-  - [Shipping Integration (using OAuth)](https://github.com/rajapatnaik/fedex-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Shipping%20Integration%20(using%20OAuth)-010724-224833.pdf)
-  - [FedEx Shipping Integration](https://github.com/rajapatnaik/fedex-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20FedEx%20Shipping%20Integration-010724-230045.pdf)
-  - [Flat Shipping Rates](https://github.com/rajapatnaik/fedex-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Flat%20Shipping%20Rates-010724-230330.pdf)
+  - [Shipping Integration (using OAuth)](/extensions/shipping/FedEx%20Shipping/SF-LWR%20Extension%20Framework%20_%20Shipping%20Integration%20(using%20OAuth)-010724-224833.pdf)
+  - [FedEx Shipping Integration](/extensions/shipping/FedEx%20Shipping/SF-LWR%20Extension%20Framework%20_%20FedEx%20Shipping%20Integration-010724-230045.pdf)
+  - [Flat Shipping Rates](/extensions/shipping/FedEx%20Shipping/SF-LWR%20Extension%20Framework%20_%20Flat%20Shipping%20Rates-010724-230330.pdf)
 
 **Warning**: The provided sample code is intended for demonstration purposes only. It is important to refrain from using this source code in a production system without first modifying and thoroughly testing it.
 

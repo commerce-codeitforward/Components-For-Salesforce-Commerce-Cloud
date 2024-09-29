@@ -44,21 +44,21 @@ There are various points where this implementation can be extended to achieve pr
 ## Snapshots ##
 
 ### Tax calculation - With shipping non-taxable  ### 
-![image](https://github.com/rajapatnaik/Avalara-salesforce-b2b-lightning/assets/37152379/ea8f5860-0f63-4bf6-a3f4-98f2e2af150d)
+![image](/extensions/tax/avalara/docs/338007849-ea8f5860-0f63-4bf6-a3f4-98f2e2af150d.png)
 
 
 ### Tax calculation - With shipping taxable  ### 
-![image](https://github.com/rajapatnaik/Avalara-salesforce-b2b-lightning/assets/37152379/188f56dc-27c8-4f88-97a8-24fc6b4a07b0)
+![image](/extensions/tax/avalara/docs/338008098-188f56dc-27c8-4f88-97a8-24fc6b4a07b0.png)
 
 
 ### Tax calculation - With customer tax exemption ###
 
-![image](https://github.com/rajapatnaik/Avalara-salesforce-b2b-lightning/assets/37152379/98754385-8691-49a7-abf4-2e2c9ae8dc61)
+![image](/extensions/tax/avalara/docs/338008044-98754385-8691-49a7-abf4-2e2c9ae8dc61.png)
 
 ## Documentation ##
 For details , docs can be found here (Use "Tax Integration" as a starting/parent doc): 
-  - [Tax Integration](https://github.com/rajapatnaik/Avalara-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Tax%20Integration-020724-144018.pdf)
-  - [Avalara Tax Integration](https://github.com/rajapatnaik/Avalara-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Avalara%20Tax%20Integration-020724-160038.pdf)
+  - [Tax Integration](/extensions/tax/avalara/SF-LWR%20Extension%20Framework%20_%20Tax%20Integration-020724-144018.pdf)
+  - [Avalara Tax Integration](/extensions/tax/avalara/SF-LWR%20Extension%20Framework%20_%20Avalara%20Tax%20Integration-020724-160038.pdf)
 
 **Warning**: The provided sample code is intended for demonstration purposes only. It is important to refrain from using this source code in a production system without first modifying and thoroughly testing it.
 

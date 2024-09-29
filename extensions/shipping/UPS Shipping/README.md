@@ -43,20 +43,20 @@ There are various points where this implementation can be extended to achieve pr
 
 ### UPS shipping methods with rates  ### 
 
-![image](https://github.com/rajapatnaik/ups-salesforceb2b-lightning/assets/37152379/692d8652-7224-4e75-9d93-8479d6c403d7)
+![image](/extensions/shipping/UPS%20Shipping/docs/337745770-692d8652-7224-4e75-9d93-8479d6c403d7.png)
 
 
 ### UPS shipping methods & rates combined with internal flat rates ### 
 
-![image](https://github.com/rajapatnaik/ups-salesforceb2b-lightning/assets/37152379/085ce855-1c94-4210-ba17-cf0291420903)
+![image](/extensions/shipping/UPS%20Shipping/docs/337750135-085ce855-1c94-4210-ba17-cf0291420903.png)
 
 
 
 ## Documentation ##
 For details , docs can be found here (Use "Shipping Integration (using OAuth)" as a starting/parent doc): 
-  - [Shipping Integration (using OAuth)](https://github.com/rajapatnaik/ups-salesforceb2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Shipping%20Integration%20(using%20OAuth)-010724-224833.pdf)
-  - [UPS Shipping Integration](https://github.com/rajapatnaik/ups-salesforceb2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20UPS%20Shipping%20Integration-010724-225710.pdf)
-  - [Flat Shipping Rates](https://github.com/rajapatnaik/ups-salesforceb2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Flat%20Shipping%20Rates-010724-230330.pdf)
+  - [Shipping Integration (using OAuth)](/extensions/shipping/UPS%20Shipping/SF-LWR%20Extension%20Framework%20_%20Shipping%20Integration%20(using%20OAuth)-010724-224833.pdf)
+  - [UPS Shipping Integration](/extensions/shipping/UPS%20Shipping/SF-LWR%20Extension%20Framework%20_%20UPS%20Shipping%20Integration-010724-225710.pdf)
+  - [Flat Shipping Rates](/extensions/shipping/UPS%20Shipping/SF-LWR%20Extension%20Framework%20_%20Flat%20Shipping%20Rates-010724-230330.pdf)
 
 **Warning**: The provided sample code is intended for demonstration purposes only. It is important to refrain from using this source code in a production system without first modifying and thoroughly testing it.
 

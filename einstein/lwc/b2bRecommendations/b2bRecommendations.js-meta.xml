@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>B2B - Einstein Recommendations</masterLabel>
+    <targets>
+        <target>lightningCommunity__Page</target>
+        <target>lightningCommunity__Default</target>
+        <target>lightning__RecordPage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property
+                label="Use Case"
+                name="useCase"
+                type="String"
+                datasource="apex://RecommenderPickList"
+                default="PersonalizedForShopper" />
+            <property
+                label="Header Text"
+                name="headerText"
+                type="String"
+                default="Recommendations for You" />
+            <property
+                label="Maximum Products Visible"
+                name="maximumProductsVisible"
+                type="Integer"
+                default="4" />
+            <property
+                label="Hide For Results Fewer Than"
+                name="hideForResultsFewerThan"
+                type="Integer"
+                default="1" />
+        </targetConfig>
+    </targetConfigs>
+</LightningComponentBundle>

@@ -43,19 +43,19 @@ There are various points where this implementation can be extended to achieve pr
 ## Snapshots ##
 
 ### Tax calculation - With shipping as non-taxable  ### 
-![image](https://github.com/rajapatnaik/vertex-salesforce-b2b-lightning/assets/37152379/39d04d4e-2c50-4c2c-b271-52ad6fe0974c)
+![image](/extensions/tax/vertex/docs/337801849-39d04d4e-2c50-4c2c-b271-52ad6fe0974c.png)
 
 
 ### Tax calculation - With shipping as taxable  ### 
-![image](https://github.com/rajapatnaik/vertex-salesforce-b2b-lightning/assets/37152379/797eeed8-8022-4c02-b92b-eb129dd9742a)
+![image](/extensions/tax/vertex/docs/337800600-797eeed8-8022-4c02-b92b-eb129dd9742a.png)
 
 ### Tax calculation - With customer tax exemption   ### 
-![image](https://github.com/rajapatnaik/vertex-salesforce-b2b-lightning/assets/37152379/d920acea-1217-409f-8fec-51c16e08a246)
+![image](/extensions/tax/vertex/docs/337802621-d920acea-1217-409f-8fec-51c16e08a246.png)
 
 ## Documentation ##
 For details , docs can be found here (Use "Tax Integration (using OAuth)" as a starting/parent doc): 
-  - [Tax Integration](https://github.com/rajapatnaik/vertex-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Tax%20Integration-020724-144018.pdf)
-  - [Vertex Tax Integration](https://github.com/rajapatnaik/vertex-salesforce-b2b-lightning/blob/main/SF-LWR%20Extension%20Framework%20_%20Vertex%20Tax%20Integration-020724-160839.pdf)
+  - [Tax Integration](/extensions/tax/vertex/SF-LWR%20Extension%20Framework%20_%20Tax%20Integration-020724-144018.pdf)
+  - [Vertex Tax Integration](/extensions/tax/vertex/SF-LWR%20Extension%20Framework%20_%20Vertex%20Tax%20Integration-020724-160839.pdf)
 
 **Warning**: The provided sample code is intended for demonstration purposes only. It is important to refrain from using this source code in a production system without first modifying and thoroughly testing it.
 
