@@ -1,0 +1,19 @@
+<template>
+    <lightning-input 
+        lwc:ref="genericFieldInput"
+        data-id="genericFieldInput"
+        if:true={fieldInfo.updateable} 
+        type={fieldInfo.dataType} 
+        label={fieldInfo.label} 
+        field-level-help={fieldInfo.inlineHelpText} 
+        required={fieldInfo.required}
+        onchange={handleChange}>
+    </lightning-input>
+    <template if:true={showError}>
+        <div> 
+            <span class="slds-text-color_destructive">
+                {errorMessage}
+            </span>
+        </div>
+    </template>
+</template>
