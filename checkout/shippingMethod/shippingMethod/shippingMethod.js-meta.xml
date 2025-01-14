@@ -5,7 +5,7 @@
     <masterLabel>Shipping Method</masterLabel>
     <targets>
         <target>lightningCommunity__Page</target>
-        <target>lightningCommunity__Default</target>
+        <target>lightningCommunity__Default</target> 
     </targets>
     <targetConfigs>
         <targetConfig targets="lightningCommunity__Default">

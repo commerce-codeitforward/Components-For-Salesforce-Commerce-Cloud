@@ -13,7 +13,7 @@ const CheckoutStage = {
   };
 
 export default class ShippingMethod extends CheckoutComponentBase {
-    parsedData;
+    parsedData; 
     isDisabled = true;
     _errorMessage = '';
     isSummary = false;

@@ -11,7 +11,7 @@ This component shows the delivery methods that are available to the user during 
 6. Login as user and check components values for accuracy
 
 
-### Updates
+### Updates 
 The following updates have been made as of 1/14/25
 - Updated design to be closer to what is out of the box
 - Updated the data to utilize the storefront api's (these weren't available when this component was first built)

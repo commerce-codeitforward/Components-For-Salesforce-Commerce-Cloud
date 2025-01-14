@@ -6,7 +6,7 @@ const mockData = [
         currencyIsoCode: 'USD',
         carrier: 'UPS',
         classOfService: 'Same day UPS Ground',
-        selected: false,
+        selected: false, 
     },
     {
         id: '2Dmxx0000005DEWDB3',
