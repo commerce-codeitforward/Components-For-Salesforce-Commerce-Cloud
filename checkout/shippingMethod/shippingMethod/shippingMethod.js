@@ -1,88 +1,77 @@
-import { LightningElement, wire, api, track } from 'lwc';
-import getCommerceCheckout from "@salesforce/apex/CommerceCheckout.getCommerceCheckout";
-import updateCommerceDeliveryMethodCheckout from "@salesforce/apex/CommerceCheckout.updateCommerceDeliveryMethodCheckout";
-import communityId from '@salesforce/community/Id';
+import { api } from 'lwc';
+import { mockData } from './shippingMethodMockData';
+import { CheckoutComponentBase, updateDeliveryMethod, loadCheckout} from 'commerce/checkoutApi';
+import { refreshCartSummary } from "commerce/cartApi";
 
-export default class ShippingMethod extends LightningElement {
-    shippingInstructions;
+const CheckoutStage = {
+    CHECK_VALIDITY_UPDATE: "CHECK_VALIDITY_UPDATE",
+    REPORT_VALIDITY_SAVE: "REPORT_VALIDITY_SAVE",
+    BEFORE_PAYMENT: "BEFORE_PAYMENT",
+    PAYMENT: "PAYMENT",
+    BEFORE_PLACE_ORDER: "BEFORE_PLACE_ORDER",
+    PLACE_ORDER: "PLACE_ORDER",
+  };
+
+export default class ShippingMethod extends CheckoutComponentBase {
     parsedData;
-    showComp = true;
-    showHeaderLabel = true;
     isDisabled = true;
-    showError = false;
-    _checkoutMode = 1;
-    _isShowEmptyMessage = false;
-    _emptyMessage = '';
+    _errorMessage = '';
+    isSummary = false;
+    selectedGroup;
     @api transformedOptions;
-    @api name = 'delivery-method';
-    @api selectedOption;
-    @track currentCommunityId;
 
-    connectedCallback() {
-        this.currentCommunityId = communityId;
-        console.log("communityId: "+communityId);
+    // this variable can be removed if you don't plan to use the expression, but loadCheckout instead
+    @api checkoutData;
+
+    async connectedCallback() {
+        if(!this.isInSitePreview()) {
+            this.getCommerceCheckoutInfo();
+        } else {
+            this.transformedOptions = mockData;
+        }
     }
 
     /**
      * 
-     * Get the active checkout data for the user
+     * Get the checkout data for the user
      */
-    @wire(getCommerceCheckout, { communityId: '$currentCommunityId' })
-    myShippingMethodCheckout({ error, data }) {
-        this.isPreview = this.isInSitePreview();
-        if (!this.isPreview) {
-            if (data) {
-                this.parsedData = JSON.parse(data);
-                console.log('delivery methods: '+ this.parsedData);
-                this.deliveryGroups = this.parsedData.deliveryGroups.items[0].availableDeliveryMethods;
-                const tempTransformedOptions = this.transformedMethods(this.parsedData);
-                console.log('tempTransformedOptions: '+ tempTransformedOptions);
-                this.isDisabled = false;
+    async getCommerceCheckoutInfo() {
+        // there is an option to use the exppression data binding to get the checkout data
+        // this value starts as undefined, make sure to check for it before using it
+        // console.log('checkoutData: '+JSON.stringify(this.checkoutData));
 
-                // ensure the values are unique before passing them to the frontend
-                const arrUniq = [...new Map(tempTransformedOptions.map(v => [v.id, v])).values()]
-                this.transformedOptions = arrUniq;
+        this.parsedData = await loadCheckout();
+        this.deliveryGroups = this.parsedData.deliveryGroups.items[0].availableDeliveryMethods;
+        if(this.deliveryGroups.length !== 0){
+            // clear any errors before proceeding
+            this.clearCheckoutError();
 
-            } else if (error) {
-                _isShowEmptyMessage = true;
-                _emptyMessage = 'There are no available delivery methods. Reach out to your administrator.'
-                console.log('##There are no available delivery methods.');
-                throw new 
-                Error(
-                'There must be delivery methods setup in order to proceed.');
-            }
+            // transforms the data into a format that the frontend can use
+            const tempTransformedOptions = this.transformedMethods(this.parsedData);
+            this.isDisabled = false;
+
+            // ensure the values are unique before passing them to the frontend
+            const arrUniq = [...new Map(tempTransformedOptions.map(v => [v.id, v])).values()]
+            this.transformedOptions = arrUniq;
         }else{
-            // if you are in experience builder, use these sample values so the component shows
-            this.transformedOptions = [
-                {
-                    id: '2Dmxx0000004CFVCA2',
-                    name: 'UPS Ground 3-5 business days',
-                    shippingFee: '3.14',
-                    currencyIsoCode: 'USD',
-                    carrier: 'UPS',
-                    classOfService: 'Same day UPS Ground',
-                    selected: false,
-                },
-                {
-                    id: '2Dmxx0000005DEWDB3',
-                    name: 'UPS Next Day 2 business days',
-                    shippingFee: '2.03',
-                    currencyIsoCode: 'USD',
-                    carrier: 'UPS',
-                    classOfService: 'Next day UPS Ground',
-                    selected: true,
-                },
-            ];
+            this._errorMessage = 'There are no available delivery methods. Reach out to your administrator.'
+            console.log('##There are no available delivery methods.');
+            
+            this.dispatchUpdateErrorAsync({
+                    groupId: 'ShippingMethod',
+                    type: '/commerce/errors/checkout-failure',
+                    exception:  this._errorMessage
+            });
         }
-    };
+    }
 
     /**
      * Consumes the raw api data and transforms into formated delivery options for frontend
      */
     transformedMethods(deliveryMethods){
       var deliveryGroups = deliveryMethods.deliveryGroups.items[0].availableDeliveryMethods;
-      var selectedGroup = deliveryMethods.deliveryGroups.items[0].selectedDeliveryMethod;
-      var selectedGroupArray = [selectedGroup];
+      this.selectedGroup = deliveryMethods.deliveryGroups.items[0].selectedDeliveryMethod;
+      var selectedGroupArray = [this.selectedGroup];
       
       let options = [];
       deliveryGroups.forEach(newOption => {
@@ -125,6 +114,7 @@ export default class ShippingMethod extends LightningElement {
             if(option.id == value){
                 const newOption = {...option, selected:true};
                 newtransformedOptions.push(newOption);
+                this.selectedGroup = newOption;
             }else{
                 const newOption = {...option, selected:false};
                 newtransformedOptions.push(newOption);
@@ -140,97 +130,90 @@ export default class ShippingMethod extends LightningElement {
     handleChange(event){
         // disable while the component is saving the values
         this.isDisabled = true;
-        this.selectedOption = event.target.value;
-        this.updateOptions(this.selectedOption);
-
-        const deliveryAddressGroup = {
-            deliveryMethodId: event.target.value
-        }
+        this.updateOptions(event.target.value);
         
-        updateCommerceDeliveryMethodCheckout({communityId: this.currentCommunityId, payload : JSON.stringify(deliveryAddressGroup)})
+        updateDeliveryMethod(event.target.value)
         .then(result => {
             this.dispatchEvent(new CustomEvent('dataready', { bubbles: true, composed: true }));
+            this.doRefreshCartSummary();
             // enable the fields once the api responds
-            this.isDisabled = false;
         })
         .catch(error => {
             console.log("Error in Submit call back:", error);
             this.isDisabled = false;
+            this._errorMessage = 'There was an error updating the shipping method. Please try again.';
+
+            this.dispatchUpdateErrorAsync({
+                groupId: 'ShippingMethod',
+                type: '/commerce/errors/checkout-failure',
+                exception:  this._errorMessage
+            });
         })
     }
 
     /**
-     * The current checkout mode for this component
-     *
-     * @type {CheckoutMode}
+     * 
+     * Refreshes the cart summary after the shipping method has been updated
+     * 
      */
-    @api get checkoutMode() {
-        return this._checkoutMode;
+    async doRefreshCartSummary() {
+        await refreshCartSummary();
+        this.isDisabled = false;
     }
 
     /**
-     * Handles the checkout mode and puts the component in the right state
-     * If the component is not currently being edited it'll go into disbaled state
+     * 
+     * Clears any ShippingMethod errors
+     * 
      */
-    set checkoutMode(value) {
-        switch(value){
-            case 1:
-                this.isDisabled = false;
-                break;
-            case 2:
-                this.isDisabled = true;
-                break;
-            case 3:
-                this.isDisabled = true;
-                break;
+    clearCheckoutError() {
+        this.dispatchUpdateErrorAsync({
+            groupId: ShippingMethod
+        });
+
+    }
+
+    /**
+     * update form when our container asks us to
+     */
+    stageAction(checkoutStage /*CheckoutStage*/) {
+        switch (checkoutStage) {
+            case CheckoutStage.CHECK_VALIDITY_UPDATE:
+                return Promise.resolve(this.checkValidity());
+            case CheckoutStage.REPORT_VALIDITY_SAVE:
+                return Promise.resolve(this.reportValidity());
             default:
-                this.isDisabled = false;
+                return Promise.resolve(true);
         }
-        this._checkoutMode = value;
+    } 
+
+    /**
+     * handles the aspects changing on the site.
+     */
+    setAspect(newAspect) {
+        if (!this.isInSitePreview()) {
+            if(newAspect.summary){
+                this.isSummary = true;
+            }else {
+                this.isSummary = false;
+                this.getCommerceCheckoutInfo();
+            }
+        }
     }
 
     /**
-     * Report false and show the error message until the user accepts the Terms
+     * checkValidity 
      */
     @api
-    get checkValidity() {
+    checkValidity() {
         return true;
     }
   
     /**
-     * Report false and show the error message until the shopper accepts the 
-     * Terms Checkout has reportValidity functionality.
-     * 
-     * One-page Layout: reportValidity is triggered clicking place order.
-     * 
-     * Accordion Layout: reportValidity is triggered clicking each section's 
-     * proceed button.
-     *
-     * @returns boolean
+     * reportValidity
      */
     @api
     reportValidity() {
         return true;
-    }
- 
-   /**
-    * Works in Accordion when terms component before payment component.
-    * 
-    * Works in One Page when terms component placed anywhere.
-    * 
-    * Can be in same step/section as payment component as long as it is placed 
-    * before payment info.
-    *
-    * (In this case this method is redundant and optional but shows as an 
-    * example of how checkoutSave can also throw an error to temporarily halt 
-    * checkout on the ui)
-    */
-    @api
-    checkoutSave() {
-        if (!this.checkValidity) {
-            throw new 
-            Error(
-            'A delivery method must be selected');
-        }
     }
 }

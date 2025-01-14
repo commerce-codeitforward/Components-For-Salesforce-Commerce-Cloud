@@ -7,4 +7,9 @@
         <target>lightningCommunity__Page</target>
         <target>lightningCommunity__Default</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightningCommunity__Default">
+            <property label="Checkout Expression" name="checkoutData" type="String" default="{!Checkout.Details}"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>
