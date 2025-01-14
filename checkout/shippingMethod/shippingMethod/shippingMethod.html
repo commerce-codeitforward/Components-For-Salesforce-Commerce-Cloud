@@ -1,55 +1,76 @@
 <template lwc:render-mode="light">
-    <div if:true={_isShowEmptyMessage} class="slds-p-around_small empty-message">
-        {_emptyMessage}
+    <div if:true={isSummary}>
+        <template if:true={selectedGroup}>
+            <div class="flex-container">
+                <span
+                    id={selectedGroup.id}
+                    data-id={selectedGroup.id}
+                >{selectedGroup.name}</span
+                >
+                <lightning-formatted-number
+                    class="slds-m-left_medium slds-align_right"
+                    id={selectedGroup.id}
+                    value={selectedGroup.shippingFee}
+                    currency-code={selectedGroup.currencyIsoCode}
+                    display-currency-as="symbol"
+                    format-style="currency" 
+                >
+                </lightning-formatted-number>
+            </div>
+        </template>
     </div>
 
-    <div
-        if:false={_isShowEmptyMessage}
-        class="slds-form-element"
-        data-shipping-method-edit>
-        <div class="slds-form-element__control">
-            <template for:each={transformedOptions} for:item="option">
-                <span class="slds-radio" key={option.key}>
-                    <input
-                        type="radio"
-                        name={name}
-                        id={option.id}
-                        checked={option.selected}
-                        value={option.id}
-                        required={_required}
-                        disabled={isDisabled}
-                        onchange={handleChange}
-                    />
-                    <label
-                        class="
-                            slds-radio__label
-                            flex-container
-                        "
-                        for={option.id}
-                    >
-                        <span><span class="slds-radio_faux"></span>&nbsp;</span>
-                        <span
-                            id={option.id}
-                            data-id={option.id}
-                            class="slds-form-element__label flex-grow"
-                        >{option.name}</span
-                        >
-                        <lightning-formatted-number
-                            class="
-                                slds-form-element__label
-                                slds-m-left_medium
-                                slds-align_right
-                            "
-                            id={option.id}
-                            value={option.shippingFee}
-                            currency-code={option.currencyIsoCode}
-                            display-currency-as="symbol"
-                            format-style="currency" 
-                        >
-                        </lightning-formatted-number>
-                    </label>
-                </span>
-            </template>
+    <div if:false={isSummary}>
+        <div
+            class="slds-form-element"
+            data-shipping-method-edit>
+            <div class="slds-form-element__control slds-p-around_medium">
+                <div class="slds-grid slds-wrap">
+                    <template for:each={transformedOptions} for:item="option">
+                        <div class="slds-col slds-size_10-of-12" key={option.key}>
+                            <span class="slds-radio" key={option.key}>
+                                <input
+                                    type="radio"
+                                    name={name}
+                                    id={option.id}
+                                    checked={option.selected}
+                                    value={option.id}
+                                    required={_required}
+                                    disabled={isDisabled}
+                                    onchange={handleChange}
+                                />
+                                <label class="slds-radio__label flex-container" for={option.id}>
+                                    <span>
+                                        <span class="slds-radio_faux"></span>&nbsp;
+                                    </span>
+                                    <span
+                                        id={option.id}
+                                        data-id={option.id}
+                                        class="slds-form-element__label flex-grow"
+                                    >{option.name}</span>
+                                </label>
+                            </span>
+                        </div>
+                        <div class="slds-col slds-size_2-of-12" key={option.key}>
+                            <span>
+                                <lightning-formatted-number
+                                    class=" 
+                                        slds-form-element__label
+                                        slds-m-left_medium
+                                        slds-align_right
+                                    "
+                                    id={option.id}
+                                    value={option.shippingFee}
+                                    currency-code={option.currencyIsoCode}
+                                    display-currency-as="symbol"
+                                    format-style="currency" 
+                                >
+                                </lightning-formatted-number>
+                            </span>
+                        </div>
+                    </template>
+                </div>
+            </div>
         </div>
     </div>
 </template>
