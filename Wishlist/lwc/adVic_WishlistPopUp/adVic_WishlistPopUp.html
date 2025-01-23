@@ -1,0 +1,80 @@
+<!--
+ - Created by dillon.loubser on 10/26/23.
+ -->
+
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <lightning-icon icon-name="utility:close" variant="inverse" onclick={handleClose}></lightning-icon>
+                <span class="slds-assistive-text">{labels.Cancel}</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{labels.AddToWishlist}</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium create-list" id="modal-content-id-1">
+                <div if:false={isLoading}>
+                    <div if:false={justName}>
+                        <template if:false={showSelect}>
+                            <p>{labels.CreateWishListLabel}</p>
+                            <lightning-input name="list-name" type="text" placeholder={labels.WishlistName} label={labels.WishlistName} onchange={listNameChange} required></lightning-input>
+                            <template if:true={hasWishLists}>
+                                <button class="slds-button slds-button_brand" style="margin-top: 2%; margin-bottom: 2%" onclick={handleSelectAList}>{labels.SelectLabel}</button>
+                            </template>
+                        </template>
+
+                        <template if:true={showSelect}>
+                            <p>{labels.SelectLabel}</p>
+                            <lightning-combobox
+                                    name="wish-list"
+                                    label="Wish List"
+                                    value={selectedWishListId}
+                                    placeholder={labels.SelectLabel}
+                                    options={wishListOptions}
+                                    onchange={handleWishList}></lightning-combobox>
+                            <button class="slds-button slds-button_brand" style="margin-top: 2%; margin-bottom: 2%" onclick={handleCreateNewList}>{labels.CreateWishListLabel}</button>
+                        </template>
+                    </div>
+                    <div if:true={justName}>
+                        <lightning-input name="list-name" type="text" max-length="255" placeholder={labels.WishlistName} value={firstName} label={labels.WishlistName} onchange={listNameChange} required></lightning-input>
+                    </div>
+                </div>
+                <div if:true={isLoading}>
+                    <lightning-spinner
+                            if:true={isLoading}
+                            class="slds-is-absolute slds-align_absolute-center"
+                            alternative-text={labels.LoadingLabel}
+                            size="medium"
+                            variant="brand"
+                    >
+                    </lightning-spinner>
+                </div>
+                <div if:false={justName}>
+                    <div class="quantity-selector" if:false={justNew}>
+                        <p>QTY</p>
+                        <button onclick={decreaseQuantity} class="quantity-button">-</button>
+                        <input value={quantity} oninput={handleQuantityChange} class="quantity-input"/>
+                        <button onclick={increaseQuantity} class="quantity-button">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-modal__footer" style="display:flex">
+                <div style="flex:8; margin-right:1%">
+                    <button class="slds-button slds-button_neutral" aria-label={labels.Cancel} onclick={handleClose}>{labels.Cancel}</button>
+                </div>
+                <div if:false={justName}>
+                    <div style="flex:1" if:false={justNew}>
+                        <button class="slds-button slds-button_brand" onclick={handleAdd}>{labels.Add}</button>
+                    </div>
+                    <div style="flex:1" if:true={justNew}>
+                        <button class="slds-button slds-button_brand" onclick={handleCreate}>{labels.CreateWishListLabel}</button>
+                    </div>
+                </div>
+                <div if:true={justName} style="flex:1">
+                    <button class="slds-button slds-button_brand" onclick={handleRename}>{labels.RenameLabel}</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
