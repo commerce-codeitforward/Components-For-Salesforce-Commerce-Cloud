@@ -1,0 +1,63 @@
+{
+  "title" : "Layout Properties",
+  "lightning:type" : "lightning__objectType",
+  "properties" : {
+    "relatedListObjectName" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Related List Object Name",
+      "description" : "The API Name of the Related Object"
+    },
+    "relatedListParentField" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Look Field",
+      "description" : "The Lookup Field from the Child Record"
+    },
+    "fieldSetName" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Field Set Name",
+      "description" : "The Field Set API Name used to display the fields in the related list"
+    },
+    "filterField" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Filter Field API Name(Optional)",
+      "description" : "The Field API Name in the Related List used to filter the records returned"
+    },
+    "filterValue" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Filter Value(Optional)",
+      "description" : "The Filter Value used with the Filter Field to filter the records returned"
+    },
+    "hideCheckBoxColumn" : {
+      "lightning:type" : "lightning__booleanType",
+      "title" : "Hide Checkbox Column"
+    },
+    "columnWidthsMode" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Column Width Mode"
+    },
+    "resizeColumnDisabled" : {
+      "lightning:type" : "lightning__booleanType",
+      "title" : "Disable Column Resizing"
+    },
+    "hideTableHeader" : {
+      "lightning:type" : "lightning__booleanType",
+      "title" : "Hide Table Header Row"
+    },
+    "titleValue" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Title Value",
+      "description" : "The Title that will appear above the Data Table"
+    },
+    "showTitle" : {
+      "lightning:type" : "lightning__booleanType",
+      "title" : "Display Title",
+      "description" : "Display the Title"
+    },
+    "keyField" : {
+      "lightning:type" : "lightning__textType",
+      "title" : "Keyfield Name"
+    }
+  },
+  "required" : [ ],
+  "unevaluatedProperties" : false
+}
