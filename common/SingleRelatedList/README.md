@@ -7,27 +7,27 @@ The component uses a Datatable to display the related records. This columns in t
 Install instructions:
 1. Deploy the code in the SingleRelatedList folder into your org.
 2. Assign the SingleRelatedListUser and SingleRelatedListAdmin appropriately.
-  -  Each Permission Set grants access to the SingleRelatedListController apex code.
-  -  SingleRelatedListAdmin Permission Set also grants access to the SingleRelatedListCPEController apex code used to configure the compoenent in Experience Builder.
-  -  You can also use these Permissions Sets to grant access to any Objects or fields used in the component.
+-  Each Permission Set grants access to the SingleRelatedListController apex code.
+-  SingleRelatedListAdmin Permission Set also grants access to the SingleRelatedListCPEController apex code used to configure the compoenent in Experience Builder.
+-  You can also use these Permissions Sets to grant access to any Objects or fields used in the component.
 3. Open a Record Detail page in Experience Builder
 4. Under Custom components, drag and drop the "Single Related List" component into the desired location. You can drop multiple components into one page to display more than one related record list.
 5. On the "Data Binding" Tab 
-  - Select the Parent Object from the "Parent Object" dropdown.
-  - Select the Child / Related object from the "Related Object" dropdown. This is necessary to fill the "Related Object" dropdown.
-  - Select the Field Set for your related object using the "Field Set" dropdown. You must define your Field Set under the Object settings in Salesforce Setup.
-  - Select the Lookup Field that is used to associate the Child Object to the Parent Object using the "Lookup Field" dropdown.
+- Select the Parent Object from the "Parent Object" dropdown.
+- Select the Child / Related object from the "Related Object" dropdown. This is necessary to fill the "Related Object" dropdown.
+- Select the Field Set for your related object using the "Field Set" dropdown. You must define your Field Set under the Object settings in Salesforce Setup.
+- Select the Lookup Field that is used to associate the Child Object to the Parent Object using the "Lookup Field" dropdown.
 6. Expand the "Table Options" section of the component configuration panel.
-  - Enter the value you would like to be displayed as the Title of the Datatable in the "Table Title" text input. This is optional.
-  - Check the "Show Title" checkbox if you would like the "Table Title" to be displayed in the component.
-  - Check the "Hide Table Header Row" checkbox if you do not want the Column Headers to be displayed.
-  - Check the "Disable Column Resizing" checkbox to disable column resizing.
-  - Select the Column Widths Mode" option. 
-    - auto: columns will adjust automatically in the space allotted.
-    - fixed: columns will divide equally in the space allotted.
+- Enter the value you would like to be displayed as the Title of the Datatable in the "Table Title" text input. This is optional.
+- Check the "Show Title" checkbox if you would like the "Table Title" to be displayed in the component.
+- Check the "Hide Table Header Row" checkbox if you do not want the Column Headers to be displayed.
+- Check the "Disable Column Resizing" checkbox to disable column resizing.
+- Select the Column Widths Mode" option. 
+  - auto: columns will adjust automatically in the space allotted.
+  - fixed: columns will divide equally in the space allotted.
 7. Expand the "Option Filter" section of the component configuration panel.
-  - Select the Field you would like to use to limit the rows displayed in the component using the "Filter Field" dropdown.(Optional)
-  - In the "Filter Value" text input, enter a filter value appropriate for the "Filter Field" selected.
+- Select the Field you would like to use to limit the rows displayed in the component using the "Filter Field" dropdown.(Optional)
+- In the "Filter Value" text input, enter a filter value appropriate for the "Filter Field" selected.
 8. The final property in the editor, is the "Record Id" with a default of {!recordId}. This is needed to get the Parent Object Id into the component. 
   
 
