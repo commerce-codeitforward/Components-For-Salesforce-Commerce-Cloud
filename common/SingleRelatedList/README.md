@@ -1,7 +1,7 @@
-# Cybersource - B2B / B2C Commerce for LWR
+# Single Related List Component for LWR
 This component can be used on any Record Detail Page to display 1 Child Object of the Detail Record. 
 There are a few configuration options outline below.
-The component uses a Datatable to display the related records. This columns in the Datatable are configured using a FieldSet of your choosing. YOu will be able to select it from the related objects Field Set metadata.
+The component uses a Datatable to display the related records. This columns in the Datatable are configured using a Field Set of your choosing. You will be able to select it from the related objects Field Set metadata.
 
 
 Install instructions:
@@ -39,6 +39,6 @@ The Filter Field and Filter Value inputs are optional. If you do not enter any f
 Component Contents:
 - singleRelatedList LWC: This component uses the the configuration properties to display the Related Records on the page.
 - singleRelatedListControllerCPE LWC: This is the component that is displayed ast the Property Editor in Experience Cloud to configure the metadata used by the singleRelatedList LWC.
-- SingleRelatedListController apex class: This class has all the methods to retrieve the Related Object Fieldset Fields and the Records that are displayed in the component.
+- SingleRelatedListController apex class: This class has all the methods to retrieve the Related Object Field Set Fields and the Records that are displayed in the component.
 - singleRelatedListControllerCPE apex class: This class hass all the methods to retrieve metadata used in the dropdowns.
 - singleRelatedListPE experienceTypeBundle: This metadata is used to tell Experience Cloud to use the singleRelatedListControllerCPE component as the property editor. see https://resources.docs.salesforce.com/rel1/doc/en-us/static/pdf/Custom_Property_Types_and_Editors_Beta_Summer-23.pdf?_ga=2.5467699.1465389377.1742399017-448798302.1742226744 for more information about Custom Property Types and Property Editors.
