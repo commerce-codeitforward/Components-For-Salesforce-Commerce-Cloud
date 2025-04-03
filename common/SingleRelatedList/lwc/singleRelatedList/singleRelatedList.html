@@ -1,0 +1,32 @@
+<template>
+    <template if:true={hasRecords}>
+        <template if:true={showTitle}>
+            <h3 class="slds-text-heading_medium" style="margin-bottom: 0px;">
+                {titleValue}
+            </h3>
+        </template>
+        <template if:true={hideTableHeader}>
+            <lightning-datatable
+                key-field={keyField}
+                data={records}
+                columns={columns}
+                errors={errors}
+                hide-checkbox-column={hideCheckBoxColumn}
+                column-widths-mode={columnWidthsMode}
+                resize-column-disabled={resizeColumnDisabled}
+                hide-table-header>
+            </lightning-datatable>
+        </template>
+        <template if:false={hideTableHeader}>
+            <lightning-datatable
+                key-field={keyField}
+                data={records}
+                columns={columns}
+                errors={errors}
+                hide-checkbox-column=true
+                column-widths-mode=auto
+                resize-column-disabled=true>
+            </lightning-datatable>
+        </template>
+    </template>
+</template>

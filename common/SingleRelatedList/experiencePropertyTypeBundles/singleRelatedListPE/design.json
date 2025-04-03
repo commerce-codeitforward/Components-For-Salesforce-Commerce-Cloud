@@ -1,0 +1,97 @@
+{
+    "propertySheet": {
+        "view": {
+            "definition": "lightning/tabSetLayout",
+            "children": [
+                {
+                    "definition": "lightning/tabLayout",
+                    "attributes": {
+                        "label": "Data Binding"
+                    },
+                    "children": [
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "relatedListObjectName"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "relatedListParentField"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "fieldSetName"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "filterField"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "filterValue"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "definition": "lightning/tabLayout",
+                    "attributes": {
+                        "label": "Data Display"
+                    },
+                    "children": [
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "hideTableHeader"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "hideCheckBoxColumn"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "resizeColumnDisabled"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "columnWidthsMode"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "showTitle"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "titleValue"
+                            }
+                        },
+                        {
+                            "definition": "lightning/propertyLayout",
+                            "attributes": {
+                                "property": "keyField"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

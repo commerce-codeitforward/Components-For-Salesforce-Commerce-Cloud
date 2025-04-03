@@ -1,0 +1,71 @@
+<template>
+    <lightning-accordion allow-multiple-sections-open active-section-name="A">
+        <lightning-accordion-section name="A" label="Data Binding">
+            <lightning-combobox
+                name="parentObject"
+                label="Parent Object"
+                value={configProps.parentObject}
+                placeholder="Select Parent Object"
+                options={objectList}
+                onchange={handleParentObjectChange} >
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="relatedObject"
+                label="Related Object"
+                value={configProps.relatedListObjectName}
+                placeholder="Select Related Object"
+                options={relatedObjectList}
+                onchange={handleRelatedObjectChange} >
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="fieldSet"
+                label="Field Set"
+                value={configProps.fieldSetName}
+                placeholder="Select Field Set"
+                options={fieldSetList}
+                onchange={handleFieldSetChange} >
+            </lightning-combobox>
+
+            <lightning-combobox
+                name="lookupField"
+                label="Lookup Field"
+                value={configProps.relatedListParentField}
+                placeholder="Select Lookup Field"
+                options={fieldList}
+                onchange={handleLookupFieldChange} >
+            </lightning-combobox>
+        </lightning-accordion-section>
+    
+    <lightning-accordion-section name="B" label="Table Options">
+        <lightning-input type="text" label="Table Title (Optional)" value={configProps.titleValue} onchange={handleTitleChange} onblur={handleTitleBlur}></lightning-input>
+        <lightning-input type="checkbox" label="Show Title" value={configProps.showTitle} name="showTitle" onchange={handleShowTitleChange}></lightning-input> 
+        <lightning-input type="checkbox" label="Hide Table Header Row" value={configProps.hideTableHeader} name="hideTableHeader" onchange={handlehideTableHeaderChange}></lightning-input> 
+        <lightning-input type="checkbox" label="Hide Checkbox Column" value={configProps.hideCheckBoxColumn} name="hideCheckBoxColumn" onchange={handleHideCheckBoxColumnChange}></lightning-input> 
+        <lightning-input type="checkbox" label="Disable Column Resizing" value={configProps.resizeColumnDisabled} name="disableColumnResize" onchange={handleDisableColumneResizeChange}></lightning-input> 
+        <lightning-combobox
+            name="columnWidthsMode"
+            label="Column Widths Mode"
+            value={configProps.columnWidthsMode}
+            placeholder="Select Column Widths Mode"
+            options={columnWidthsModeOptions}
+            onchange={handleColumnWidthsModeChange} >
+        </lightning-combobox>
+
+    </lightning-accordion-section>
+
+    <lightning-accordion-section name="C" label="Optional Filter">
+        <lightning-combobox
+            name="filterField (Optional)"
+            label="Filter Field"
+            value={configProps.filterField}
+            placeholder="Select Filter Field"
+            options={fieldList}
+            onchange={handleFilterFieldChange} >
+        </lightning-combobox>
+        
+        <lightning-input type="text" label="Filter Value (Optional)" onchange={handleFilterValueChange} onblur={handleFilterValueBlur}>{configProps.filterValue}</lightning-input>
+    </lightning-accordion-section>
+</lightning-accordion>
+</template>
